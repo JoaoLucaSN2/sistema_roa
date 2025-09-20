@@ -30,8 +30,7 @@ boolean incluir = false;
         initComponents();
         setTitle("Cadastro de Entregas");
         setLocationRelativeTo(null);
-  
-          Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+   Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
         try {
             mascaraDataEntrega = new MaskFormatter("##/##/####");
             jFmtDtEntrega.setFormatterFactory(new DefaultFormatterFactory(mascaraDataEntrega));
@@ -39,7 +38,7 @@ boolean incluir = false;
             Logger.getLogger(JDlgClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -244,10 +243,10 @@ boolean incluir = false;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+         Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.habilitar(false, jTxtCodigo);
-        jTxtEndereco.grabFocus();
+        jTxtEndereco.grabFocus(); 
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFmtLocalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtLocalizacaoActionPerformed
@@ -271,22 +270,25 @@ if (Util.pergunta("Deseja excluir ?")) {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+      Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
         Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
         jTxtCodigo.grabFocus();
+
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-      Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
-      Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-      Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
-    }//GEN-LAST:event_jBtnConfirmarActionPerformed
-
-    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
      Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
       Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+
+    }//GEN-LAST:event_jBtnConfirmarActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+      Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+      Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jFmtDtEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDtEntregaActionPerformed
