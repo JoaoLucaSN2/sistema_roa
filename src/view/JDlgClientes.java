@@ -33,7 +33,17 @@ public class JDlgClientes extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
-     
+      Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
+        try {
+            mascaraDataNasc = new MaskFormatter("##/##/####");
+            mascaraDataCad = new MaskFormatter("##/##/####");
+            jFmtDataNascimento.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
+            jFmtDataCadastro.setFormatterFactory(new DefaultFormatterFactory(mascaraDataCad));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
 
     /**
@@ -391,7 +401,11 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-       
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
+        Util.limpar(jTxtCodigo, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
+        jTxtCodigo.grabFocus();
+
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -401,11 +415,16 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-       
+        JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
+        jDlgClientesPesquisar.setTelaPai(this);
+        jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-      
+      Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo,jTxtEndereco, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
+        Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(false, jTxtCodigo);
+        jTxtNome.grabFocus();
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jTxtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCpfActionPerformed
