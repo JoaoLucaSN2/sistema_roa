@@ -31,7 +31,14 @@ public class JDlgVendas extends javax.swing.JDialog {
         initComponents();
         setTitle("Tabela de Vendas");
         setLocationRelativeTo(null);
-       
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+ try {
+            mascaraData = new MaskFormatter("##/##/####");;
+            jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
 
 
 
@@ -303,32 +310,47 @@ public class JDlgVendas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
- 
+ Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar1, jBtnPesquisar);
+        jTxtCodigo.grabFocus();
+
        
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-    
+    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+        Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(false, jTxtCodigo);
+        jTxtStatus.grabFocus();
+
        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-  
+  Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+        Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
          
-       
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-      
+       if (Util.pergunta("Deseja excluir ?")) {
+        
+    }
    
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        
+        JDlgVendasPesquisar jDlgVendasPesquisar = new JDlgVendasPesquisar(null, true);
+        jDlgVendasPesquisar.setTelaPai(this);
+        jDlgVendasPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-
+Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+        Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
      
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
