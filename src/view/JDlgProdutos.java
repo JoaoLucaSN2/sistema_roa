@@ -33,7 +33,14 @@ public class JDlgProdutos extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Produtos");
         setLocationRelativeTo(null);
- 
+  Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+        try {
+            mascaraDataCad = new MaskFormatter("##/##/####");
+            jFmtDataCadas.setFormatterFactory(new DefaultFormatterFactory(mascaraDataCad));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    
         
     }
 
@@ -239,21 +246,32 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        
+        JDlgProdutosPesquisar jDlgProdutosPesquisar = new JDlgProdutosPesquisar(null, true);
+        jDlgProdutosPesquisar.setTelaPai(this);
+        jDlgProdutosPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-       
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+       Util.limpar(jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
+        jTxtCodigo.grabFocus(); 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-     
+     Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+      Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+      Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
+ 
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-       
+       Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+        Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(false, jTxtCodigo);
+        jTxtNome.grabFocus();
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFmtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtPrecoActionPerformed
@@ -265,7 +283,10 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jFmtTipoActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-
+Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+      Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+      Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
+ 
   
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -274,7 +295,9 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtEstoqueActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-    
+    if (Util.pergunta("Deseja excluir ?")) {
+        
+    } 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**
