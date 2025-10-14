@@ -4,7 +4,7 @@
  */
 package view;
 
-import bean.Usuarios;
+import bean.JlrUsuarios;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,19 +15,19 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ControllerUsuarios extends AbstractTableModel {
 
-    private List lstUsuarios;
+    private List lstJlrUsuarios;
 
-    public void setList(List lstUsuarios) {
-        this.lstUsuarios = lstUsuarios;
+    public void setList(List lstJlrUsuarios) {
+        this.lstJlrUsuarios = lstJlrUsuarios;
     }
     
-    public Usuarios getBean(int rowIndex) {
-        return (Usuarios) lstUsuarios.get(rowIndex);
+    public JlrUsuarios getBean(int rowIndex) {
+        return (JlrUsuarios) lstJlrUsuarios.get(rowIndex);
     }
 
     @Override
     public int getRowCount() {
-        return lstUsuarios.size();
+        return lstJlrUsuarios.size();
                 
     }
 
@@ -38,9 +38,9 @@ public class ControllerUsuarios extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Usuarios usuarios = (Usuarios) lstUsuarios.get( rowIndex);
+        JlrUsuarios usuarios = (JlrUsuarios) lstJlrUsuarios.get( rowIndex);
         if ( columnIndex == 0 ){
-            return usuarios.getIdusuarios();
+            return usuarios.getIdJlrUsuarios();
         } else if (columnIndex ==1) {
             return usuarios.getNome();        
         } else if (columnIndex ==2) {

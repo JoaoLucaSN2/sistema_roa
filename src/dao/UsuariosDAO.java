@@ -5,23 +5,24 @@
  */
 package dao;
 
-import java.util.List;
-import bean.Usuarios;
+import bean.JlrUsuarios;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
+
+
 /**
  *
- * @author ENTERPRISE
+ * @author u1845853
  */
-public class UsuariosDAO extends AbstractDAO {
+public class UsuariosDAO extends AbstractDAO{
 
     @Override
     public void insert(Object object) {
         session.beginTransaction();
         session.save(object);
-        session.getTransaction().commit();
+        session.getTransaction().commit();        
     }
 
     @Override
@@ -30,40 +31,39 @@ public class UsuariosDAO extends AbstractDAO {
         session.flush();
         session.clear();
         session.update(object);
-        session.getTransaction().commit();
+        session.getTransaction().commit();        
     }
 
     @Override
     public void delete(Object object) {
         session.beginTransaction();
         session.flush();
-        session.clear();
+        session.clear();        
         session.delete(object);
-        session.getTransaction().commit();
+        session.getTransaction().commit();        
     }
 
     @Override
     public Object list(int codigo) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(Usuarios.class);
-        criteria.add(Restrictions.eq("idusuarios", codigo));
+        Criteria criteria = session.createCriteria(JlrUsuarios.class);
+        criteria.add(Restrictions.eq("id_jlr_usuarios", codigo));
         List lista = criteria.list();
-        session.getTransaction().commit();
+        session.getTransaction().commit();        
         return lista;
     }
 
     @Override
     public Object listAll() {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(Usuarios.class);
+        Criteria criteria = session.createCriteria(JlrUsuarios.class);
         List lista = criteria.list();
-        session.getTransaction().commit();
-        return lista;
+        session.getTransaction().commit();        
+        return lista;    
     }
 
     public static void main(String[] args) {
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.listAll();
     }
-
 }

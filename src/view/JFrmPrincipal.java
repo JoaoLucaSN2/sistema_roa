@@ -135,7 +135,7 @@ jDlgClientes.setVisible(true);
     }//GEN-LAST:event_jMnuClientesActionPerformed
 
     private void jMnuEntregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuEntregasActionPerformed
-JDlgEntregas jDlgEntregas = new JDlgEntregas(this, true);
+JDlgVendedor jDlgEntregas = new JDlgVendedor(this, true);
 jDlgEntregas.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMnuEntregasActionPerformed
 

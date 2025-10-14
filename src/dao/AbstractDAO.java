@@ -4,25 +4,26 @@
  * and open the template in the editor.
  */
 package dao;
-//import org.hibernate.Session;
-//import org.hibernate.SessionFactory;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 /**
  *
- * @author ENTERPRISE
+ * @author u1845853
  */
-public class AbstractDAO {
-  //  public  Session session;
-   //  public AbstractDAO() {
+public abstract class AbstractDAO {
+    public Session session;
+    
+    public AbstractDAO() {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        session = sessionFactory.openSession();
+    }
+    
+    public abstract void insert(Object object);
+    public abstract void update(Object object);
+    public abstract void delete(Object object);
+    public abstract Object list(int codigo);
+    public abstract Object listAll();
 
-    //    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    //session = sessionFactory.openSession();
-    
-    
-   
-    
-  //  public abstract void insert(Object object);
- //   public abstract void update(Object object);
-  //  public abstract void delete(Object object);
-  //  public abstract Object list(int object);
-   // public abstract Object listAll(); 
 }
