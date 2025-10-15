@@ -63,7 +63,7 @@ public class ClientesDAO extends AbstractDAO{
     }
 
     public static void main(String[] args) {
-        ClientesDAO produtosDAO = new ClientesDAO();
-        produtosDAO.listAll();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        clientesDAO.listAll();
     }
 }

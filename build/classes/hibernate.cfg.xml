@@ -41,6 +41,16 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-
-    </session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/joao_roa?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping class="bean.JlrVendedor"/>
+    <mapping class="bean.JlrProdutos"/>
+    <mapping class="bean.JlrUsuarios"/>
+    <mapping class="bean.JlrVendasprodutos"/>
+    <mapping class="bean.JlrUsuariosId"/>
+    <mapping class="bean.JlrVendas"/>
+    <mapping class="bean.JlrClientes"/>
+  </session-factory>
 </hibernate-configuration>

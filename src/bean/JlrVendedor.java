@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 public class JlrVendedor  implements java.io.Serializable {
 
 
-     private int idJlrEntregas;
+     private int idJlrVendedor;
      private String jlrNome;
      private String jlrCpf;
      private String jlrTelefone;
@@ -31,8 +31,8 @@ public class JlrVendedor  implements java.io.Serializable {
     public JlrVendedor() {
     }
 
-    public JlrVendedor(int idJlrEntregas, String jlrNome, String jlrCpf, String jlrTelefone, String jlrEmail, Date jlrDataNascimento, String jlrAtivo) {
-       this.idJlrEntregas = idJlrEntregas;
+    public JlrVendedor(int idJlrVendedor, String jlrNome, String jlrCpf, String jlrTelefone, String jlrEmail, Date jlrDataNascimento, String jlrAtivo) {
+       this.idJlrVendedor = idJlrVendedor;
        this.jlrNome = jlrNome;
        this.jlrCpf = jlrCpf;
        this.jlrTelefone = jlrTelefone;
@@ -44,13 +44,13 @@ public class JlrVendedor  implements java.io.Serializable {
      @Id 
 
     
-    @Column(name="id_jlr_entregas", unique=true, nullable=false)
-    public int getIdJlrEntregas() {
-        return this.idJlrEntregas;
+    @Column(name="id_jlr_vendedor", unique=true, nullable=false)
+    public int getidJlrVendedor() {
+        return this.idJlrVendedor;
     }
     
-    public void setIdJlrEntregas(int idJlrEntregas) {
-        this.idJlrEntregas = idJlrEntregas;
+    public void setidJlrVendedor(int idJlrVendedor) {
+        this.idJlrVendedor = idJlrVendedor;
     }
 
     
