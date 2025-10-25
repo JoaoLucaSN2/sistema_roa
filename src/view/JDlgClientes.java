@@ -22,7 +22,7 @@ import tools.Util;
  */
 public class JDlgClientes extends javax.swing.JDialog {
 
-    boolean incluir = false;
+   private boolean incluir;
     private MaskFormatter mascaraDataNasc, mascaraDataCad;
 
     /**
@@ -401,11 +401,11 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
         Util.limpar(jTxtCodigo, jTxtCep, jTxtPreferencia, jTxtObserva, jTxtNome, jTxtEmail, jTxtCpf, jTxtRg, jTxtEndereco, jFmtDataNascimento, jTxtTelefone, jTxtCidade, jFmtDataCadastro, jTxtEstado, jTxtAlergias);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
         jTxtCodigo.grabFocus();
-
+         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

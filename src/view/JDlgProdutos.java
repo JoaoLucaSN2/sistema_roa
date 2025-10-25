@@ -22,7 +22,7 @@ import tools.Util;
  */
 public class JDlgProdutos extends javax.swing.JDialog {
 
-    boolean incluir = false;
+    private boolean incluir;
     private MaskFormatter mascaraDataCad;
 
     /**
@@ -129,6 +129,12 @@ public class JDlgProdutos extends javax.swing.JDialog {
         });
 
         jLabel2.setText("Nome");
+
+        jTxtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCodigoActionPerformed(evt);
+            }
+        });
 
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gravar.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
@@ -253,10 +259,11 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
        Util.limpar(jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
-        jTxtCodigo.grabFocus(); 
+        jTxtCodigo.grabFocus();
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -299,6 +306,10 @@ Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescr
         
     } 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
+
+    private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCodigoActionPerformed
 
     /**
      * @param args the command line arguments

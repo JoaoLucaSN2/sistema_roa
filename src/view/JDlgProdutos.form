@@ -199,6 +199,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtCodigo">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtCodigoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnConfirmar">
       <Properties>

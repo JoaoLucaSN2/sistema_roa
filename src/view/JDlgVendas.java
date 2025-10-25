@@ -20,7 +20,8 @@ import tools.Util;
  * @author bruno
  */
 public class JDlgVendas extends javax.swing.JDialog {
-
+    
+    private boolean incluir; 
     private MaskFormatter mascaraData;
  
     /**
@@ -310,12 +311,11 @@ public class JDlgVendas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
- Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+ Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
         Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar1, jBtnPesquisar);
         jTxtCodigo.grabFocus();
-
-       
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

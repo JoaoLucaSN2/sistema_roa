@@ -20,20 +20,20 @@ import tools.Util;
  * @author ENTERPRISE
  */
 public class JDlgVendedor extends javax.swing.JDialog {
-boolean incluir = false;
-    private MaskFormatter mascaraDataEntrega;
+    private boolean incluir;
+    private MaskFormatter mascaraDataNasc;
     /**
      * Creates new form DJlgEntregas
      */
     public JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro de Entregas");
+        setTitle("Cadastro de Vendedor");
         setLocationRelativeTo(null);
-   Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+   Util.habilitar(false , jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
         try {
-            mascaraDataEntrega = new MaskFormatter("##/##/####");
-            jFmtDtEntrega.setFormatterFactory(new DefaultFormatterFactory(mascaraDataEntrega));
+            mascaraDataNasc = new MaskFormatter("##/##/####");
+            jFmtDataNasc.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
         } catch (ParseException ex) {
             Logger.getLogger(JDlgClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,15 +53,14 @@ boolean incluir = false;
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jBtnAlterar = new javax.swing.JButton();
-        jFmtLocalizacao = new javax.swing.JFormattedTextField();
+        jFmtTelefone = new javax.swing.JFormattedTextField();
         jBtnExcluir = new javax.swing.JButton();
-        jTxtEndereco = new javax.swing.JTextField();
+        jTxtNome = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTxtNmEntrega = new javax.swing.JTextField();
+        jTxtCpf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFmtStatusEntre = new javax.swing.JFormattedTextField();
-        jFmtPontoRefe = new javax.swing.JFormattedTextField();
+        jFmtEmail = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnPesquisar = new javax.swing.JButton();
         jTxtCodigo = new javax.swing.JTextField();
@@ -70,11 +69,12 @@ boolean incluir = false;
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jBtnCancelar = new javax.swing.JButton();
-        jFmtDtEntrega = new javax.swing.JFormattedTextField();
+        jFmtDataNasc = new javax.swing.JFormattedTextField();
+        jCboAtivo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel4.setText("Localização");
+        jLabel4.setText("Telefone");
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
@@ -84,9 +84,9 @@ boolean incluir = false;
             }
         });
 
-        jFmtLocalizacao.addActionListener(new java.awt.event.ActionListener() {
+        jFmtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFmtLocalizacaoActionPerformed(evt);
+                jFmtTelefoneActionPerformed(evt);
             }
         });
 
@@ -98,19 +98,19 @@ boolean incluir = false;
             }
         });
 
-        jLabel6.setText("Data Entrega");
+        jLabel6.setText("Ativo");
 
         jLabel1.setText("Codigo");
 
-        jLabel7.setText("Ponto de Referencia");
+        jLabel7.setText("Data Nascimento");
 
-        jFmtStatusEntre.addActionListener(new java.awt.event.ActionListener() {
+        jFmtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFmtStatusEntreActionPerformed(evt);
+                jFmtEmailActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Endereco");
+        jLabel2.setText("Nome");
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
@@ -136,9 +136,9 @@ boolean incluir = false;
             }
         });
 
-        jLabel3.setText("Nome Entregador");
+        jLabel3.setText("Cpf");
 
-        jLabel5.setText("Status da Entrega");
+        jLabel5.setText("Email");
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
@@ -148,9 +148,9 @@ boolean incluir = false;
             }
         });
 
-        jFmtDtEntrega.addActionListener(new java.awt.event.ActionListener() {
+        jFmtDataNasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFmtDtEntregaActionPerformed(evt);
+                jFmtDataNascActionPerformed(evt);
             }
         });
 
@@ -159,42 +159,43 @@ boolean incluir = false;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtnIncluir)
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTxtNmEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jFmtLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(85, 85, 85)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFmtStatusEntre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jFmtPontoRefe, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBtnIncluir)
-                                .addGap(6, 6, 6)
-                                .addComponent(jBtnAlterar)
-                                .addGap(12, 12, 12)
-                                .addComponent(jBtnExcluir)
-                                .addGap(6, 6, 6)
-                                .addComponent(jBtnConfirmar)
-                                .addGap(6, 6, 6)
-                                .addComponent(jBtnCancelar)
-                                .addGap(6, 6, 6)
-                                .addComponent(jBtnPesquisar))))
+                        .addComponent(jBtnAlterar)
+                        .addGap(12, 12, 12)
+                        .addComponent(jBtnExcluir)
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnConfirmar)
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnCancelar)
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnPesquisar))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jFmtDtEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTxtCpf, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFmtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFmtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel7)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFmtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCboAtivo))))
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -207,28 +208,26 @@ boolean incluir = false;
                 .addGap(6, 6, 6)
                 .addComponent(jLabel2)
                 .addGap(6, 6, 6)
-                .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jLabel3)
                 .addGap(6, 6, 6)
-                .addComponent(jTxtNmEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jLabel4)
                 .addGap(6, 6, 6)
-                .addComponent(jFmtLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFmtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFmtStatusEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFmtPontoRefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFmtDtEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFmtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFmtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCboAtivo))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnIncluir)
                     .addComponent(jBtnAlterar)
@@ -243,15 +242,15 @@ boolean incluir = false;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-         Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+         Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.habilitar(false, jTxtCodigo);
-        jTxtEndereco.grabFocus(); 
+        jTxtNome.grabFocus(); 
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
-    private void jFmtLocalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtLocalizacaoActionPerformed
+    private void jFmtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtTelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFmtLocalizacaoActionPerformed
+    }//GEN-LAST:event_jFmtTelefoneActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
 if (Util.pergunta("Deseja excluir ?")) {
@@ -259,9 +258,9 @@ if (Util.pergunta("Deseja excluir ?")) {
     } 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
-    private void jFmtStatusEntreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtStatusEntreActionPerformed
+    private void jFmtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFmtStatusEntreActionPerformed
+    }//GEN-LAST:event_jFmtEmailActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
      JDlgVendedorPesquisar jDlgEntregasPesquisar = new JDlgVendedorPesquisar(null, true);
@@ -270,30 +269,30 @@ if (Util.pergunta("Deseja excluir ?")) {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-      Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
-        Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+      Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo,jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
+        Util.limpar(jTxtCodigo,jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar, jBtnPesquisar);
         jTxtCodigo.grabFocus();
-
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-     Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+     Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-      Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+      Util.limpar(jTxtCodigo, jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-      Util.limpar(jTxtCodigo, jTxtEndereco, jTxtNmEntrega, jFmtLocalizacao, jFmtStatusEntre, jFmtPontoRefe, jFmtDtEntrega);
+      Util.limpar(jTxtCodigo,jTxtNome, jTxtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
 
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
-    private void jFmtDtEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDtEntregaActionPerformed
+    private void jFmtDataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataNascActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFmtDtEntregaActionPerformed
+    }//GEN-LAST:event_jFmtDataNascActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,10 +346,10 @@ if (Util.pergunta("Deseja excluir ?")) {
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JFormattedTextField jFmtDtEntrega;
-    private javax.swing.JFormattedTextField jFmtLocalizacao;
-    private javax.swing.JFormattedTextField jFmtPontoRefe;
-    private javax.swing.JFormattedTextField jFmtStatusEntre;
+    private javax.swing.JCheckBox jCboAtivo;
+    private javax.swing.JFormattedTextField jFmtDataNasc;
+    private javax.swing.JFormattedTextField jFmtEmail;
+    private javax.swing.JFormattedTextField jFmtTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -361,7 +360,7 @@ if (Util.pergunta("Deseja excluir ?")) {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTxtCodigo;
-    private javax.swing.JTextField jTxtEndereco;
-    private javax.swing.JTextField jTxtNmEntrega;
+    private javax.swing.JTextField jTxtCpf;
+    private javax.swing.JTextField jTxtNome;
     // End of variables declaration//GEN-END:variables
 }
