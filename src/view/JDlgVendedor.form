@@ -29,7 +29,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -50,9 +50,10 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="jBtnPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jTxtNome" alignment="0" min="-2" pref="477" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jTxtCpf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jFmtCpf" alignment="0" max="32767" attributes="0"/>
                           <Component id="jFmtTelefone" alignment="0" max="32767" attributes="0"/>
                           <Component id="jFmtEmail" alignment="0" pref="164" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -72,7 +73,6 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jTxtNome" alignment="0" min="-2" pref="477" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -91,9 +91,9 @@
               <Component id="jTxtNome" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Component id="jTxtCpf" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <Component id="jFmtCpf" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="jFmtTelefone" min="-2" max="-2" attributes="0"/>
@@ -167,8 +167,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Codigo"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTxtCpf">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -247,6 +245,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCboAtivo">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtCpf">
     </Component>
   </SubComponents>
 </Form>

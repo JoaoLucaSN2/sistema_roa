@@ -4,10 +4,11 @@
  */
 package view;
 
-
+import dao.VendasDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.DefaultFormatterFactory;
@@ -32,6 +33,11 @@ public class JDlgVendas extends javax.swing.JDialog {
         initComponents();
         setTitle("Tabela de Vendas");
         setLocationRelativeTo(null);
+         ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        for (int i = 0; i < lista.size(); i++) {
+            jCboClientes.addItem( (Vendas) lista.get(i));            
+        }
         Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
  try {
             mascaraData = new MaskFormatter("##/##/####");;
@@ -40,7 +46,15 @@ public class JDlgVendas extends javax.swing.JDialog {
             Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
           }
         }
-
+    public VendasDAO viewBean() {
+        Vendas vendas = new Vendas();
+        vendas.setIdvendas( Util.strToInt(jTxtCodigo.getText()));
+        vendas.setStatus(Util.strToDate(jTxtStatus.getText()));
+        vendas.setTotal(Util.strToDouble(jFmtData.getText()));
+        vendas.setClientes((Clientes) jTxtTotal.getSelectedItem());
+        vendas.setVendedor((Vendedor) jCboVendedor.getSelectedItem());
+        return vendas;
+    }
 
 
 
