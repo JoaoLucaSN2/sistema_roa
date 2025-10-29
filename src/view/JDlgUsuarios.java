@@ -324,27 +324,26 @@ public class JDlgUsuarios extends javax.swing.JDialog {
            // usuariosDAO.update(viewBean());
         }
 
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
         Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.habilitar(false, jTxtCodigo);
         jTxtNome.grabFocus();
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jChbAtivo);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if (Util.perguntar("Deseja excluir ?") == true) {
+        if (Util.pergunta("Deseja excluir ?") == true) {
             UsuariosDAO usuariosDAO = new UsuariosDAO();
             usuariosDAO.delete(viewBean());
         }
