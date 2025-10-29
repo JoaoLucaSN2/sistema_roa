@@ -217,6 +217,12 @@ public class JDlgClientes extends javax.swing.JDialog {
 
         jLabel19.setText("Observação");
 
+        jFmtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtCpfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -435,6 +441,10 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jFmtDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFmtDataCadastroActionPerformed
+
+    private void jFmtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtCpfActionPerformed
 
     /**
      * @param args the command line arguments

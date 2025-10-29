@@ -66,4 +66,13 @@ public class UsuariosDAO extends AbstractDAO{
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.listAll();
     }
+     public boolean existeId(int id) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(JlrUsuarios.class);
+    criteria.add(Restrictions.eq("id_jlr_usuarios", id));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+
+    return !lista.isEmpty();
+    }
 }

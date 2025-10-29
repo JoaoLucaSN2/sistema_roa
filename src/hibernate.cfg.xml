@@ -49,7 +49,6 @@ Contributor(s):
     <mapping class="bean.JlrProdutos"/>
     <mapping class="bean.JlrUsuarios"/>
     <mapping class="bean.JlrVendasprodutos"/>
-    <mapping class="bean.JlrUsuariosId"/>
     <mapping class="bean.JlrVendas"/>
     <mapping class="bean.JlrClientes"/>
   </session-factory>

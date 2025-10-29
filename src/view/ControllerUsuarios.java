@@ -42,11 +42,11 @@ public class ControllerUsuarios extends AbstractTableModel {
         if ( columnIndex == 0 ){
             return usuarios.getIdJlrUsuarios();
         } else if (columnIndex ==1) {
-            return usuarios.getNome();        
+            return usuarios.getJlrNome();        
         } else if (columnIndex ==2) {
-            return usuarios.getApelido();
+            return usuarios.getJlrApelido();
         } else if (columnIndex ==3) {
-            return usuarios.getCpf();
+            return usuarios.getJlrCpf();
         }
         return "";
     }

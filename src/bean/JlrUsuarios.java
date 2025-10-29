@@ -19,35 +19,28 @@ import javax.persistence.TemporalType;
 public class JlrUsuarios implements java.io.Serializable {
 
     private int idJlrUsuarios;
-    private String nome;
-    private String apelido;
-    private String cpf;
-    private Date dataNascimento;
-    private String senha;
-    private int nivel;
-    private String ativo;
+    private String  jlrNome;
+    private String jlrApelido;
+    private String jlrCpf;
+    private Date jlrDataNascimento;
+    private String jlrSenha;
+    private int jlrNivel;
+    private String jlrAtivo;
 
     public JlrUsuarios() {
     }
 
-    public JlrUsuarios(int idJlrUsuarios, String nome, String apelido, String senha, int nivel, String ativo) {
-        this.idJlrUsuarios = idJlrUsuarios;
-        this.nome = nome;
-        this.apelido = apelido;
-        this.senha = senha;
-        this.nivel = nivel;
-        this.ativo = ativo;
-    }
 
-    public JlrUsuarios(int idJlrUsuarios, String nome, String apelido, String cpf, Date dataNascimento, String senha, int nivel, String ativo) {
+
+    public JlrUsuarios(int idJlrUsuarios, String jlrNome, String jlrApelido, String jlrCpf, Date jlrDataNascimento, String jlrSenha, int jlrNivel, String jlrAtivo) {
         this.idJlrUsuarios = idJlrUsuarios;
-        this.nome = nome;
-        this.apelido = apelido;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.senha = senha;
-        this.nivel = nivel;
-        this.ativo = ativo;
+        this.jlrNome = jlrNome;
+        this.jlrApelido = jlrApelido;
+        this.jlrCpf = jlrCpf;
+        this.jlrDataNascimento = jlrDataNascimento;
+        this.jlrSenha = jlrSenha;
+        this.jlrNivel = jlrNivel;
+        this.jlrAtivo = jlrAtivo;
     }
 
     @Id
@@ -61,68 +54,68 @@ public class JlrUsuarios implements java.io.Serializable {
         this.idJlrUsuarios = idJlrUsuarios;
     }
 
-    @Column(name = "nome", nullable = false, length = 45)
-    public String getNome() {
-        return this.nome;
+    @Column(name = "jlr_nome", nullable = false, length = 45)
+    public String getJlrNome() {
+        return this.jlrNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setJlrNome(String jlrNome) {
+        this.jlrNome = jlrNome;
     }
 
-    @Column(name = "apelido", nullable = false, length = 45)
-    public String getApelido() {
-        return this.apelido;
+    @Column(name = "jlr_apelido", nullable = false, length = 45)
+    public String getJlrApelido() {
+        return this.jlrApelido;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
+    public void setJlrApelido(String jlrApelido) {
+        this.jlrApelido = jlrApelido;
     }
 
-    @Column(name = "cpf", length = 15)
-    public String getCpf() {
-        return this.cpf;
+    @Column(name = "jlr_cpf", length = 15)
+    public String getJlrCpf() {
+        return this.jlrCpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setJlrCpf(String jlrCpf) {
+        this.jlrCpf = jlrCpf;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "dataNascimento", length = 10)
-    public Date getDataNascimento() {
-        return this.dataNascimento;
+    @Column(name = "jlr_data_nascimento", length = 10)
+    public Date getJlrDataNascimento() {
+        return this.jlrDataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setJlrDataNascimento(Date jlrDataNascimento) {
+        this.jlrDataNascimento = jlrDataNascimento;
     }
 
-    @Column(name = "senha", nullable = false, length = 15)
-    public String getSenha() {
-        return this.senha;
+    @Column(name = "jlr_senha", nullable = false, length = 15)
+    public String getJlrSenha() {
+        return this.jlrSenha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setJlrSenha(String jlrSenha) {
+        this.jlrSenha = jlrSenha;
     }
 
-    @Column(name = "nivel", nullable = false)
-    public int getNivel() {
-        return this.nivel;
+    @Column(name = "jlr_nivel", nullable = false)
+    public int getJlrNivel() {
+        return this.jlrNivel;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public void setJlrNivel(int jlrNivel) {
+        this.jlrNivel = jlrNivel;
     }
 
-    @Column(name = "ativo", nullable = false, length = 1)
-    public String getAtivo() {
-        return this.ativo;
+    @Column(name = "jlr_ativo", nullable = false, length = 1)
+    public String getJlrAtivo() {
+        return this.jlrAtivo;
     }
 
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
+    public void setJlrAtivo(String jlrAtivo) {
+        this.jlrAtivo = jlrAtivo;
     }
 
 }

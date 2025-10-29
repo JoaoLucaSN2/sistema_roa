@@ -71,7 +71,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jCboEntregas" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCboVendedor" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -132,7 +132,7 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCboEntregas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCboVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCboUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCboClientes" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTxtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -291,7 +291,8 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCboClientesActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;JlrClientes&gt;()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;JlrClientes&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCboUsuarios">
@@ -301,17 +302,19 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;JlrUsuarios&gt;()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;JlrUsuarios&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jCboEntregas">
+    <Component class="javax.swing.JComboBox" name="jCboVendedor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;JlrVendedor&gt;()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;JlrVendedor&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -326,7 +329,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Entregas"/>
+        <Property name="text" type="java.lang.String" value="Vendedor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtCodigo">

@@ -66,4 +66,13 @@ public class ClientesDAO extends AbstractDAO{
         ClientesDAO clientesDAO = new ClientesDAO();
         clientesDAO.listAll();
     }
+    public boolean existeId(int id) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(JlrClientes.class);
+    criteria.add(Restrictions.eq("id_jlr_clientes", id));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+
+    return !lista.isEmpty();
+    }
 }

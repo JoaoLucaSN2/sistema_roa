@@ -66,17 +66,24 @@ public class Util {
     }
 
     public static String doubleToStr(double num) {
-        return String.valueOf(num);
+        return "";
     }
 
-    public static Date strToDate(String data) throws Exception  {
+    public static Date strToDate(String data)  {
+    try {
         return new SimpleDateFormat("dd/MM/yyyy").parse(data);
-
+    } catch (Exception e) {
+        return null;
+    }
     }
 
    public static String dateToStr(Date data) {
-        return new SimpleDateFormat("dd/MM/yyyy").format(data);
- 
+          if (data == null) return "";
+    return new SimpleDateFormat("dd/MM/yyyy").format(data);
+    }
+
+    public static boolean perguntar(String deseja_excluir_) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

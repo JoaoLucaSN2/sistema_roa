@@ -4,6 +4,11 @@
  */
 package view;
 
+import dao.UsuariosDAO;
+import dao.ClientesDAO;
+import bean.JlrClientes;
+import bean.JlrUsuarios;
+import bean.JlrVendas;
 import dao.VendasDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,14 +36,23 @@ public class JDlgVendas extends javax.swing.JDialog {
     public JDlgVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
         setTitle("Tabela de Vendas");
         setLocationRelativeTo(null);
+        
          ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
-            jCboClientes.addItem( (Vendas) lista.get(i));            
+            jCboClientes.addItem( (JlrClientes) lista.get(i));
         }
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List listaUsuarios = (List) usuariosDAO.listAll();
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+         jCboUsuarios.addItem((JlrUsuarios) listaUsuarios.get(i));
+         
+         
+
  try {
             mascaraData = new MaskFormatter("##/##/####");;
             jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
@@ -46,14 +60,23 @@ public class JDlgVendas extends javax.swing.JDialog {
             Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
           }
         }
+        
+    public void beanView(JlrUsuarios jlrUsuarios) {
+        jTxtCodigo.setText(Util.intToStr(jlrUsuarios.getIdJlrUsuarios()));
+        jTxtStatus.setText(jlrUsuarios.getNome());
+        jFmtData.setText(Util.dateToStr(jlrUsuarios.getDataHora()));
+        jTxtTotal.setText(jlrUsuarios.getCpf());
+        jCboNivel.setSelectedIndex(jlrUsuarios.getNivel());
+       
     public VendasDAO viewBean() {
-        Vendas vendas = new Vendas();
-        vendas.setIdvendas( Util.strToInt(jTxtCodigo.getText()));
-        vendas.setStatus(Util.strToDate(jTxtStatus.getText()));
-        vendas.setTotal(Util.strToDouble(jFmtData.getText()));
-        vendas.setClientes((Clientes) jTxtTotal.getSelectedItem());
-        vendas.setVendedor((Vendedor) jCboVendedor.getSelectedItem());
-        return vendas;
+        JlrVendas jlrvendas = new JlrVendas();
+        jlrvendas.setIdvendas( Util.strToInt(jTxtCodigo.getText()));
+        jlrvendas.setStatus(Util.strToDate(jTxtStatus.getText()));
+        jlrvendas.setTotal(Util.strToDouble(jFmtData.getText()));
+        jlrvendas.setClientes((Clientes) jTxtTotal.getSelectedItem());
+        jlrvendas.setVendedor((Vendedor) jCboVendedor.getSelectedItem());
+        jlrvendas.setVendedor((Clientes) jCboClientes.getSelectedItem());
+        return jlrvendas;
     }
 
 
@@ -83,9 +106,9 @@ public class JDlgVendas extends javax.swing.JDialog {
         jTxtStatus = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jFmtData = new javax.swing.JFormattedTextField();
-        jCboClientes = new javax.swing.JComboBox<>();
-        jCboUsuarios = new javax.swing.JComboBox<>();
-        jCboEntregas = new javax.swing.JComboBox<>();
+        jCboClientes = new javax.swing.JComboBox<JlrClientes>();
+        jCboUsuarios = new javax.swing.JComboBox<JlrUsuarios>();
+        jCboVendedor = new javax.swing.JComboBox<JlrVendedor>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -176,7 +199,7 @@ public class JDlgVendas extends javax.swing.JDialog {
 
         jLabel6.setText("Usuarios");
 
-        jLabel7.setText("Entregas");
+        jLabel7.setText("Vendedor");
 
         jTxtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +269,7 @@ public class JDlgVendas extends javax.swing.JDialog {
                                             .addComponent(jCboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCboEntregas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel7)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
@@ -290,7 +313,7 @@ public class JDlgVendas extends javax.swing.JDialog {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCboEntregas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,15 +348,15 @@ public class JDlgVendas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
- Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+ Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor );
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar1, jBtnPesquisar);
         jTxtCodigo.grabFocus();
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor );
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.habilitar(false, jTxtCodigo);
         jTxtStatus.grabFocus();
@@ -342,9 +365,9 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-  Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+  Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor );
         Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
          
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -362,9 +385,9 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas );
+Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor );
         Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboEntregas);
+        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
      
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
@@ -452,9 +475,9 @@ public void windowClosing(java.awt.event.WindowEvent e) {
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnIncluir1;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<String> jCboClientes;
-    private javax.swing.JComboBox<String> jCboEntregas;
-    private javax.swing.JComboBox<String> jCboUsuarios;
+    private javax.swing.JComboBox<JlrClientes> jCboClientes;
+    private javax.swing.JComboBox<JlrUsuarios> jCboUsuarios;
+    private javax.swing.JComboBox<JlrVendedor> jCboVendedor;
     private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
