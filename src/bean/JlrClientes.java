@@ -93,7 +93,7 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="jlr_cpf", nullable=false, length=11)
+    @Column(name="jlr_cpf", nullable=false, length=15)
     public String getJlrCpf() {
         return this.jlrCpf;
     }

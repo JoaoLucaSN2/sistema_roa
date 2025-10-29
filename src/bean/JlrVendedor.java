@@ -45,11 +45,11 @@ public class JlrVendedor  implements java.io.Serializable {
 
     
     @Column(name="id_jlr_vendedor", unique=true, nullable=false)
-    public int getidJlrVendedor() {
+    public int getIdJlrVendedor() {
         return this.idJlrVendedor;
     }
     
-    public void setidJlrVendedor(int idJlrVendedor) {
+    public void setIdJlrVendedor(int idJlrVendedor) {
         this.idJlrVendedor = idJlrVendedor;
     }
 

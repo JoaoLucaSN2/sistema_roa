@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-//import bean.Jlr_Entregas;
-//import dao.Jlr_EntregasDao;
+import bean.JlrVendedor;
+import dao.VendedorDAO;
 import javax.swing.JOptionPane;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +39,39 @@ public class JDlgVendedor extends javax.swing.JDialog {
         } catch (ParseException ex) {
             Logger.getLogger(JDlgVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     public void beanView(JlrVendedor jlrVendedor) {
+        jTxtCodigo.setText(Util.intToStr(jlrVendedor.getidJlrVendedor()));
+        jTxtNome.setText(jlrVendedor.getJlrNome());
+        jFmtCpf.setText(jlrVendedor.getJlrCpf());
+        jFmtTelefone.setText(jlrVendedor.getJlrTelefone());
+        jFmtEmail.setText(jlrVendedor.getJlrEmail());
+        jFmtDataNasc.setText(Util.dateToStr(jlrVendedor.getJlrDataNascimento()));
+        jCboAtivo.setSelected(jlrVendedor.getJlrAtivo().equals("S"));
+       if (jlrVendedor.getJlrAtivo().equals("S") == true) {
+            jCboAtivo.setSelected(true);
+        } else {
+            jCboAtivo.setSelected(false);
+        }
+    }
+
+    public JlrUsuarios viewBean() {
+        JlrUsuarios jlrVendedor = new JlrUsuarios();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        jlrVendedor.setIdJlrUsuarios(codigo);
+        jlrVendedor.setIdJlrUsuarios(Util.strToInt(jTxtCodigo.getText()));
+        jlrVendedor.setJlrNome(jTxtNome.getText());
+        jlrVendedor.setJlrApelido(jTxtApelido.getText());
+        jlrVendedor.setJlrCpf(jFmtCpf.getText());
+        jlrVendedor.setJlrDataNascimento(Util.strToDate(jFmtDataNasc.getText()));
+        jlrVendedor.setJlrSenha(jPwfSenha.getText());
+        jlrVendedor.setJlrNivel(jCboNivel.getSelectedIndex());
+        if (jChbAtivo.isSelected() == true) {
+            jlrUsuarios.setJlrAtivo("S");
+        } else {
+            jlrUsuarios.setJlrAtivo("N");
+        }
+        return jlrVendedor;
     }
         
 

@@ -4,8 +4,10 @@
  */
 package view;
 
-//import bean.Jlr_Produtos;
-//import dao.Jlr_ProdutosDao;
+import bean.JlrProdutos;
+import bean.JlrUsuarios;
+import dao.ProdutosDAO;
+import dao.UsuariosDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,10 +41,35 @@ public class JDlgProdutos extends javax.swing.JDialog {
             jFmtDataCadas.setFormatterFactory(new DefaultFormatterFactory(mascaraDataCad));
         } catch (ParseException ex) {
             Logger.getLogger(JDlgProdutos.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    
+         } 
+       }
+       public void beanView(JlrProdutos jlrProdutos) {
+        jTxtCodigo.setText(Util.intToStr(jlrProdutos.getIdJlrProdutos()));
+        jTxtNome.setText(jlrProdutos.getJlrNome());
+        jTxtDescricao.setText(jlrProdutos.getJlrDescricao());
+        jFmtPreco.setText(jlrProdutos.getJlrPreco());
+        jFmtTipo.setText(jlrProdutos.getJlrTipo());
+        jTxtEstoque.setText(Util.intToStr(jlrProdutos.getJlrEstoque()));
+        jFmtDataCadas.setText(Util.dateToStr(jlrProdutos.getJlrDataCadastro()));
         
     }
+
+    public JlrProdutos viewBean() {
+        JlrProdutos jlrProdutos = new JlrProdutos();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        jlrProdutos.setIdJlrProdutos(codigo);
+        jlrProdutos.setIdJlrProdutos(Util.strToInt(jTxtCodigo.getText()));
+        jlrProdutos.setJlrNome(jTxtNome.getText());
+        jlrProdutos.setJlrDescricao(jTxtDescricao.getText());
+        jlrProdutos.setJlrPreco(jFmtPreco.getText());
+        jlrProdutos.setJlrTipo(jFmtTipo.getText());
+        jlrProdutos.setJlrEstoque(Util.strToInt(jTxtEstoque.getText()));
+        jlrProdutos.setJlrDataCadastro(Util.strToDate(jFmtDataCadas.getText()));
+
+        return jlrProdutos;
+    }
+  
+ 
 
     
 
@@ -268,17 +295,17 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-     Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+     Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
       Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
  
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-       Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+       Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.habilitar(false, jTxtCodigo);
         jTxtNome.grabFocus();
+          incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFmtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtPrecoActionPerformed
@@ -290,7 +317,16 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jFmtTipoActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+       ProdutosDAO produtosDAO = new ProdutosDAO();
+        JlrProdutos jlrProdutos = viewBean();
+        if (incluir == true) {
+            produtosDAO.insert(jlrProdutos);
+          //  usuariosDAO.insert(viewBean());
+        } else {
+            produtosDAO.update(jlrProdutos);
+           // usuariosDAO.update(viewBean());
+        }
+      Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
       Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
  
@@ -302,9 +338,11 @@ Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jTxtDescr
     }//GEN-LAST:event_jTxtEstoqueActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-    if (Util.pergunta("Deseja excluir ?")) {
-        
-    } 
+    if (Util.pergunta("Deseja excluir ?") == true) {
+            ProdutosDAO produtosDAO = new ProdutosDAO();
+            produtosDAO.delete(viewBean());
+        } 
+     Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed

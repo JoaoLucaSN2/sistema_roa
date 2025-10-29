@@ -4,8 +4,9 @@
  */
 package view;
 
-//import bean.Jlr_Produtos;
-//import dao.Jlr_ProdutosDao;
+import bean.JlrProdutos;
+import bean.JlrUsuarios;
+import dao.ProdutosDAO;
 import java.util.List;
 
 /**
@@ -15,14 +16,18 @@ import java.util.List;
 public class JDlgProdutosPesquisar extends javax.swing.JDialog {
     
 JDlgProdutos jDlgProdutos;
-    
+ControllerProdutos controllerProdutos;   
    
     public JDlgProdutosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();        
         setLocationRelativeTo(null);
         setTitle("Pesquisa de Produtos");
-       
+       controllerProdutos = new ControllerProdutos();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        controllerProdutos.setList(lista);
+        jTable1.setModel(controllerProdutos);
     }
     
 //    public void setJDlgUsuarios(JDlgUsuarios jDlgUsuarios){
@@ -92,8 +97,9 @@ JDlgProdutos jDlgProdutos;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk3ActionPerformed
-int linSel = jTable1.getSelectedRow();
-        setVisible(false);          // TODO add your handling code here:
+JlrProdutos produtos =  controllerProdutos.getBean( jTable1.getSelectedRow() );
+        jDlgProdutos.beanView(produtos);
+        this.setVisible(false);         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOk3ActionPerformed
 
     /**
