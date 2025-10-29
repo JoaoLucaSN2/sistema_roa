@@ -6,6 +6,7 @@
 package dao;
 
 import bean.JlrProdutos;
+import bean.JlrUsuarios;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -65,5 +66,14 @@ public class ProdutosDAO extends AbstractDAO{
     public static void main(String[] args) {
         ProdutosDAO produtosDAO = new ProdutosDAO();
         produtosDAO.listAll();
+    }
+    public boolean existeId(int id) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(JlrUsuarios.class);
+    criteria.add(Restrictions.eq("id_jlr_usuarios", id));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+
+    return !lista.isEmpty();
     }
 }

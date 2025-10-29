@@ -5,6 +5,7 @@
 package view;
 
 import bean.JlrClientes;
+import bean.JlrUsuarios;
 import dao.ClientesDAO;
 import dao.UsuariosDAO;
 import java.util.List;
@@ -95,8 +96,9 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
-        int linSel = jTable1.getSelectedRow();
-        setVisible(false);
+        JlrClientes clientes =  controllerClientes.getBean( jTable1.getSelectedRow() );
+        jDlgClientes.beanView(clientes);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOk1ActionPerformed
 
     /**
