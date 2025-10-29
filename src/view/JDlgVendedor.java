@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+import bean.JlrUsuarios;
 import bean.JlrVendedor;
+import dao.UsuariosDAO;
 import dao.VendedorDAO;
 import javax.swing.JOptionPane;
 import java.text.ParseException;
@@ -41,7 +43,7 @@ public class JDlgVendedor extends javax.swing.JDialog {
         }
     }
      public void beanView(JlrVendedor jlrVendedor) {
-        jTxtCodigo.setText(Util.intToStr(jlrVendedor.getidJlrVendedor()));
+        jTxtCodigo.setText(Util.intToStr(jlrVendedor.getIdJlrVendedor()));
         jTxtNome.setText(jlrVendedor.getJlrNome());
         jFmtCpf.setText(jlrVendedor.getJlrCpf());
         jFmtTelefone.setText(jlrVendedor.getJlrTelefone());
@@ -55,21 +57,20 @@ public class JDlgVendedor extends javax.swing.JDialog {
         }
     }
 
-    public JlrUsuarios viewBean() {
-        JlrUsuarios jlrVendedor = new JlrUsuarios();
+    public JlrVendedor viewBean() {
+        JlrVendedor jlrVendedor = new JlrVendedor();
         int codigo = Util.strToInt(jTxtCodigo.getText());
-        jlrVendedor.setIdJlrUsuarios(codigo);
-        jlrVendedor.setIdJlrUsuarios(Util.strToInt(jTxtCodigo.getText()));
+        jlrVendedor.setIdJlrVendedor(codigo);
+        jlrVendedor.setIdJlrVendedor(Util.strToInt(jTxtCodigo.getText()));
         jlrVendedor.setJlrNome(jTxtNome.getText());
-        jlrVendedor.setJlrApelido(jTxtApelido.getText());
         jlrVendedor.setJlrCpf(jFmtCpf.getText());
+        jlrVendedor.setJlrTelefone(jFmtTelefone.getText());
+        jlrVendedor.setJlrEmail(jFmtEmail.getText()); 
         jlrVendedor.setJlrDataNascimento(Util.strToDate(jFmtDataNasc.getText()));
-        jlrVendedor.setJlrSenha(jPwfSenha.getText());
-        jlrVendedor.setJlrNivel(jCboNivel.getSelectedIndex());
-        if (jChbAtivo.isSelected() == true) {
-            jlrUsuarios.setJlrAtivo("S");
+        if (jCboAtivo.isSelected() == true) {
+            jlrVendedor.setJlrAtivo("S");
         } else {
-            jlrUsuarios.setJlrAtivo("N");
+            jlrVendedor.setJlrAtivo("N");
         }
         return jlrVendedor;
     }
@@ -277,10 +278,10 @@ public class JDlgVendedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-         Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
+         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.habilitar(false, jTxtCodigo);
-        jTxtNome.grabFocus(); 
+        jTxtNome.grabFocus();
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFmtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtTelefoneActionPerformed
@@ -288,9 +289,11 @@ public class JDlgVendedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jFmtTelefoneActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-if (Util.pergunta("Deseja excluir ?")) {
-        
-    } 
+  if (Util.pergunta("Deseja excluir ?") == true) {
+            UsuariosDAO usuariosDAO = new UsuariosDAO();
+            usuariosDAO.delete(viewBean());
+        }
+ Util.limpar(jTxtCodigo,jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jFmtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtEmailActionPerformed
@@ -312,14 +315,23 @@ if (Util.pergunta("Deseja excluir ?")) {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-     Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
+     VendedorDAO vendedorDAO = new VendedorDAO();
+        JlrVendedor jlrVendedor = viewBean();
+        if (incluir == true) {
+            vendedorDAO.insert(jlrVendedor);
+          //  usuariosDAO.insert(viewBean());
+        } else {
+            vendedorDAO.update(jlrVendedor);
+           // usuariosDAO.update(viewBean());
+        }
+      Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
       Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-    Util.habilitar(true, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
+    Util.habilitar(false, jBtnConfirmar, jBtnCancelar,jTxtCodigo, jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
       Util.habilitar(true, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
       Util.limpar(jTxtCodigo,jTxtNome, jFmtCpf, jFmtTelefone, jFmtEmail, jFmtDataNasc, jCboAtivo);
 

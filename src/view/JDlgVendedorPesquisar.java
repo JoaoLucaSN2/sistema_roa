@@ -3,16 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-//import bean.Jlr_Clientes;
-//import bean.Jlr_Entregas;
-//import dao.Jlr_EntregasDao;
+import dao.VendedorDAO;
+import bean.JlrVendedor;
 import java.util.List;
 /**
  *
  * @author ENTERPRISE
  */
 public class JDlgVendedorPesquisar extends javax.swing.JDialog {
-    JDlgVendedor jDlgEntregas;
+    JDlgVendedor jDlgVendedor;
+    ControllerVendedor controllerVendedor;
     
     /**
      * Creates new form JDlgEntregasPesquisar
@@ -20,11 +20,16 @@ public class JDlgVendedorPesquisar extends javax.swing.JDialog {
     public JDlgVendedorPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisa de Entregas");
+        setTitle("Pesquisa de Vendedor");
         setLocationRelativeTo(null);
+        controllerVendedor = new ControllerVendedor();
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        List lista = (List) vendedorDAO.listAll();
+        controllerVendedor.setList(lista);
+        jTable1.setModel(controllerVendedor);
     }
-public void setTelaPai(JDlgVendedor jDlgEntregas) {
-        this.jDlgEntregas = jDlgEntregas;
+public void setTelaPai(JDlgVendedor jDlgVendedor) {
+        this.jDlgVendedor = jDlgVendedor;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,8 +90,9 @@ public void setTelaPai(JDlgVendedor jDlgEntregas) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk2ActionPerformed
-       int linSel = jTable1.getSelectedRow();
-        setVisible(false); // TODO add your handling code here:
+      JlrVendedor vendedor =  controllerVendedor.getBean( jTable1.getSelectedRow() );
+        jDlgVendedor.beanView(vendedor);
+        this.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOk2ActionPerformed
 
     /**

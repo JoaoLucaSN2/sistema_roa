@@ -39,7 +39,7 @@ public class ControllerVendedor extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         JlrVendedor vendedor = (JlrVendedor) lstJlrVendedor.get(rowIndex);
         if (columnIndex == 0) {
-            return vendedor.getidJlrVendedor();
+            return vendedor.getIdJlrVendedor();
         } else if (columnIndex == 1) {
             return vendedor.getJlrNome();
         } else if (columnIndex == 2) {

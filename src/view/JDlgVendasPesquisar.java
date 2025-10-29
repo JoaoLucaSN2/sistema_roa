@@ -4,7 +4,8 @@
  */
 package view;
 
-
+import bean.JlrVendas;
+import dao.VendasDAO;
 import java.util.List;
 
 /**
@@ -14,20 +15,29 @@ import java.util.List;
 public class JDlgVendasPesquisar extends javax.swing.JDialog {
 
     JDlgVendas jDlgVendas;
-   
+    ControllerVendas controllerVendas;
 
-    /**
-     * Creates new form JDlgVendasPesquisar
-     */
-    public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        setTitle("Pesquisa de Vendas");
-        setLocationRelativeTo(null);
-    }
+
+/**
+ * Creates new form JDlgVendasPesquisar
+ */
+public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    initComponents();
+    setTitle("Pesquisa de Vendas");
+    setLocationRelativeTo(null);
+    setTitle("Pesquisa de Vendas");
+    setLocationRelativeTo(null);
+    controllerVendas = new ControllerVendas();
+    VendasDAO vendasDAO = new VendasDAO();
+    List lista = (List) vendasDAO.listAll();
+    controllerVendas.setList(lista);
+    jTable1.setModel(controllerVendas);
+}
 
     public void setTelaPai(JDlgVendas jDlgVendas) {
         this.jDlgVendas = jDlgVendas;
+        
     }
 
     /**
@@ -85,8 +95,9 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        int linSel = jTable1.getSelectedRow();
-        setVisible(false);   // TODO add your handling code here:
+        JlrVendas vendas = controllerVendas.getBean( jTable1.getSelectedRow() );
+        jDlgVendas.beanView(vendas);
+        this.setVisible(false);  // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**
@@ -103,16 +114,28 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -122,7 +145,7 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
                 JDlgVendasPesquisar dialog = new JDlgVendasPesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
+        public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
