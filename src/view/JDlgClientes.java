@@ -68,6 +68,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     public JlrClientes viewBean() {
         JlrClientes jlrClientes = new JlrClientes();
         int codigo = Util.strToInt(jTxtCodigo.getText());
+        jlrClientes.setIdJlrClientes(codigo);
         jlrClientes.setJlrCep(jTxtCep.getText());
         jlrClientes.setJlrPreferenciaSabor(jTxtPreferencia.getText());
         jlrClientes.setJlrObservacoes(jTxtObserva.getText());

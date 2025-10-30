@@ -38,11 +38,13 @@ public class JlrVendas  implements java.io.Serializable {
 
     public JlrVendas() {
     }
-
 	
-    public JlrVendas(int idJlrVendas) {
-        this.idJlrVendas = idJlrVendas;
+    public JlrVendas(int lgsIdVendas, JlrClientes jlrClientes, JlrUsuarios jlrUsuarios) {
+       this.idJlrVendas = idJlrVendas;
+       this.jlrClientes = jlrClientes;
+       this.jlrUsuarios = jlrUsuarios;
     }
+    
     public JlrVendas(int idJlrVendas, JlrClientes jlrClientes, JlrUsuarios jlrUsuarios, JlrVendedor jlrVendedor, Date jlrData, String jlrStatus, Double jlrTotal) {
        this.idJlrVendas = idJlrVendas;
        this.jlrClientes = jlrClientes;

@@ -130,10 +130,6 @@ public class JlrProdutos  implements java.io.Serializable {
         this.jlrDataCadastro = jlrDataCadastro;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jlrProdutos")
-    public Set getJlrVendasprodutoses() {
-        return this.jlrVendasprodutoses;
-    }
     
     public void setJlrVendasprodutoses(Set jlrVendasprodutoses) {
         this.jlrVendasprodutoses = jlrVendasprodutoses;

@@ -38,19 +38,18 @@ Version 2 license, then the option applies only if the new code is
 made subject to such option by the copyright holder.
 
 Conexão do if!!!!!!!!!!!!!!!!
- <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">joao_roa</property>
-    <property name="hibernate.connection.password">joao_roa</property>
-    
-    
-Contributor(s):
--->
-<hibernate-configuration>
-  <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/joao_roa?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+Contributor(s):
+-->
+<hibernate-configuration>
+  <session-factory>
+    
+ <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">joao_roa</property>
+    <property name="hibernate.connection.password">joao_roa</property>
     <mapping class="bean.JlrVendas"/>
     <mapping class="bean.JlrVendasprodutos"/>
     <mapping class="bean.JlrClientes"/>
