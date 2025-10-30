@@ -1,11 +1,15 @@
 package bean;
-// Generated 12/10/2025 19:53:29 by Hibernate Tools 4.3.1
+// Generated 29/10/2025 15:23:18 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="jlr_clientes"
-    ,catalog="joao_roa"
+    ,catalog="db_joao_roa"
 )
 public class JlrClientes  implements java.io.Serializable {
 
@@ -40,35 +44,24 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
 	
-    public JlrClientes(int idJlrClientes, String jlrNome, String jlrCpf, String jlrRg, String jlrTelefone, String jlrEmail, String jlrEndereco, String jlrCidade, String jlrEstado, String jlrCep) {
+    public JlrClientes(int idJlrClientes, String jlrNome, String jlrCpf, String jlrRg, Date jlrDataNascimento, String jlrTelefone, String jlrEmail, String jlrEndereco, String jlrCidade, String jlrEstado, String jlrCep, Date jlrDataCadastro, String jlrPreferenciaSabor, String jlrAlergias, String jlrObservacoes) {
         this.idJlrClientes = idJlrClientes;
         this.jlrNome = jlrNome;
         this.jlrCpf = jlrCpf;
         this.jlrRg = jlrRg;
+        this.jlrDataNascimento = jlrDataNascimento;
         this.jlrTelefone = jlrTelefone;
         this.jlrEmail = jlrEmail;
         this.jlrEndereco = jlrEndereco;
         this.jlrCidade = jlrCidade;
         this.jlrEstado = jlrEstado;
         this.jlrCep = jlrCep;
+        this.jlrDataCadastro = jlrDataCadastro;
+        this.jlrPreferenciaSabor = jlrPreferenciaSabor;
+        this.jlrAlergias = jlrAlergias;
+        this.jlrObservacoes = jlrObservacoes;
     }
-    public JlrClientes(int idJlrClientes, String jlrNome, String jlrCpf, String jlrRg, Date jlrDataNascimento, String jlrTelefone, String jlrEmail, String jlrEndereco, String jlrCidade, String jlrEstado, String jlrCep, Date jlrDataCadastro, String jlrPreferenciaSabor, String jlrAlergias, String jlrObservacoes) {
-       this.idJlrClientes = idJlrClientes;
-       this.jlrNome = jlrNome;
-       this.jlrCpf = jlrCpf;
-       this.jlrRg = jlrRg;
-       this.jlrDataNascimento = jlrDataNascimento;
-       this.jlrTelefone = jlrTelefone;
-       this.jlrEmail = jlrEmail;
-       this.jlrEndereco = jlrEndereco;
-       this.jlrCidade = jlrCidade;
-       this.jlrEstado = jlrEstado;
-       this.jlrCep = jlrCep;
-       this.jlrDataCadastro = jlrDataCadastro;
-       this.jlrPreferenciaSabor = jlrPreferenciaSabor;
-       this.jlrAlergias = jlrAlergias;
-       this.jlrObservacoes = jlrObservacoes;
-    }
+
    
      @Id 
 
@@ -113,7 +106,7 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="jlr_data_nascimento", length=10)
+    @Column(name="jlr_data_nascimento", nullable=false, length=10)
     public Date getJlrDataNascimento() {
         return this.jlrDataNascimento;
     }
@@ -182,8 +175,8 @@ public class JlrClientes  implements java.io.Serializable {
         this.jlrCep = jlrCep;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="jlr_data_cadastro", length=19)
+    @Temporal(TemporalType.DATE)
+    @Column(name="jlr_data_cadastro", nullable=false, length=10)
     public Date getJlrDataCadastro() {
         return this.jlrDataCadastro;
     }
@@ -193,7 +186,7 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="jlr_preferencia_sabor", length=50)
+    @Column(name="jlr_preferencia_sabor", nullable=false, length=50)
     public String getJlrPreferenciaSabor() {
         return this.jlrPreferenciaSabor;
     }
@@ -203,7 +196,7 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="jlr_alergias", length=65535)
+    @Column(name="jlr_alergias", nullable=false, length=65535)
     public String getJlrAlergias() {
         return this.jlrAlergias;
     }
@@ -213,7 +206,7 @@ public class JlrClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="jlr_observacoes", length=65535)
+    @Column(name="jlr_observacoes", nullable=false, length=65535)
     public String getJlrObservacoes() {
         return this.jlrObservacoes;
     }
@@ -221,6 +214,7 @@ public class JlrClientes  implements java.io.Serializable {
     public void setJlrObservacoes(String jlrObservacoes) {
         this.jlrObservacoes = jlrObservacoes;
     }
+
 
 
 

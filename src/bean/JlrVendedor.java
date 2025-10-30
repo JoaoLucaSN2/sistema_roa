@@ -1,11 +1,15 @@
 package bean;
-// Generated 12/10/2025 19:53:29 by Hibernate Tools 4.3.1
+// Generated 29/10/2025 15:23:18 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="jlr_vendedor"
-    ,catalog="joao_roa"
+    ,catalog="db_joao_roa"
 )
 public class JlrVendedor  implements java.io.Serializable {
 
@@ -31,15 +35,18 @@ public class JlrVendedor  implements java.io.Serializable {
     public JlrVendedor() {
     }
 
+	
     public JlrVendedor(int idJlrVendedor, String jlrNome, String jlrCpf, String jlrTelefone, String jlrEmail, Date jlrDataNascimento, String jlrAtivo) {
-       this.idJlrVendedor = idJlrVendedor;
-       this.jlrNome = jlrNome;
-       this.jlrCpf = jlrCpf;
-       this.jlrTelefone = jlrTelefone;
-       this.jlrEmail = jlrEmail;
-       this.jlrDataNascimento = jlrDataNascimento;
-       this.jlrAtivo = jlrAtivo;
+        this.idJlrVendedor = idJlrVendedor;
+        this.jlrNome = jlrNome;
+        this.jlrCpf = jlrCpf;
+        this.jlrTelefone = jlrTelefone;
+        this.jlrEmail = jlrEmail;
+        this.jlrDataNascimento = jlrDataNascimento;
+        this.jlrAtivo = jlrAtivo;
     }
+
+  
    
      @Id 
 

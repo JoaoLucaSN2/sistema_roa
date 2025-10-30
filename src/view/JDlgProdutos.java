@@ -47,7 +47,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         jTxtCodigo.setText(Util.intToStr(jlrProdutos.getIdJlrProdutos()));
         jTxtNome.setText(jlrProdutos.getJlrNome());
         jTxtDescricao.setText(jlrProdutos.getJlrDescricao());
-        jFmtPreco.setText(jlrProdutos.getJlrPreco());
+        jFmtPreco.setText(Util.doubleToStr(jlrProdutos.getJlrPreco()));
         jFmtTipo.setText(jlrProdutos.getJlrTipo());
         jTxtEstoque.setText(Util.intToStr(jlrProdutos.getJlrEstoque()));
         jFmtDataCadas.setText(Util.dateToStr(jlrProdutos.getJlrDataCadastro()));
@@ -61,7 +61,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         jlrProdutos.setIdJlrProdutos(Util.strToInt(jTxtCodigo.getText()));
         jlrProdutos.setJlrNome(jTxtNome.getText());
         jlrProdutos.setJlrDescricao(jTxtDescricao.getText());
-        jlrProdutos.setJlrPreco(jFmtPreco.getText());
+        jlrProdutos.setJlrPreco(Util.strToDouble(jFmtPreco.getText()));
         jlrProdutos.setJlrTipo(jFmtTipo.getText());
         jlrProdutos.setJlrEstoque(Util.strToInt(jTxtEstoque.getText()));
         jlrProdutos.setJlrDataCadastro(Util.strToDate(jFmtDataCadas.getText()));

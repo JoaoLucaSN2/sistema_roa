@@ -1,12 +1,18 @@
 package bean;
-// Generated 12/10/2025 19:53:29 by Hibernate Tools 4.3.1
+// Generated 29/10/2025 15:23:18 by Hibernate Tools 4.3.1
 
 
-
+import java.lang.Double;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,31 +22,36 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="jlr_vendas"
-    ,catalog="joao_roa"
+    ,catalog="db_joao_roa"
 )
 public class JlrVendas  implements java.io.Serializable {
 
 
      private int idJlrVendas;
-     private int jlrIdClientes;
-     private int jlrIdUsuarios;
-     private int jlrIdEntregas;
-     private Date jlrDataHora;
+     private JlrClientes jlrClientes;
+     private JlrUsuarios jlrUsuarios;
+     private JlrVendedor jlrVendedor;
+     private Date jlrData;
      private String jlrStatus;
-     private String jlrTotal;
+     private Double jlrTotal;
+   
 
     public JlrVendas() {
     }
 
 	
-       public JlrVendas(int idJlrVendas, int jlrIdClientes, int jlrIdUsuarios, int jlrIdEntregas, Date jlrDataHora, String jlrStatus, String jlrTotal) {
+    public JlrVendas(int idJlrVendas) {
+        this.idJlrVendas = idJlrVendas;
+    }
+    public JlrVendas(int idJlrVendas, JlrClientes jlrClientes, JlrUsuarios jlrUsuarios, JlrVendedor jlrVendedor, Date jlrData, String jlrStatus, Double jlrTotal) {
        this.idJlrVendas = idJlrVendas;
-       this.jlrIdClientes = jlrIdClientes;
-       this.jlrIdUsuarios = jlrIdUsuarios;
-       this.jlrIdEntregas = jlrIdEntregas;
-       this.jlrDataHora = jlrDataHora;
+       this.jlrClientes = jlrClientes;
+       this.jlrUsuarios = jlrUsuarios;
+       this.jlrVendedor = jlrVendedor;
+       this.jlrData = jlrData;
        this.jlrStatus = jlrStatus;
        this.jlrTotal = jlrTotal;
+
     }
    
      @Id 
@@ -55,48 +66,48 @@ public class JlrVendas  implements java.io.Serializable {
         this.idJlrVendas = idJlrVendas;
     }
 
-    
-    @Column(name="jlr_id_clientes", nullable=false)
-    public int getJlrIdClientes() {
-        return this.jlrIdClientes;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="jlr_id_clientes")
+    public JlrClientes getJlrClientes() {
+        return this.jlrClientes;
     }
     
-    public void setJlrIdClientes(int jlrIdClientes) {
-        this.jlrIdClientes = jlrIdClientes;
+    public void setJlrClientes(JlrClientes jlrClientes) {
+        this.jlrClientes = jlrClientes;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="jlr_id_usuarios")
+    public JlrUsuarios getJlrUsuarios() {
+        return this.jlrUsuarios;
+    }
+    
+    public void setJlrUsuarios(JlrUsuarios jlrUsuarios) {
+        this.jlrUsuarios = jlrUsuarios;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="jlr_id_vendedor")
+    public JlrVendedor getJlrVendedor() {
+        return this.jlrVendedor;
+    }
+    
+    public void setJlrVendedor(JlrVendedor jlrVendedor) {
+        this.jlrVendedor = jlrVendedor;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="jlr_data", length=10)
+    public Date getJlrData() {
+        return this.jlrData;
+    }
+    
+    public void setJlrData(Date jlrData) {
+        this.jlrData = jlrData;
     }
 
     
-    @Column(name="jlr_id_usuarios", nullable=false)
-    public int getJlrIdUsuarios() {
-        return this.jlrIdUsuarios;
-    }
-    
-    public void setJlrIdUsuarios(int jlrIdUsuarios) {
-        this.jlrIdUsuarios = jlrIdUsuarios;
-    }
-
-    
-    @Column(name="jlr_id_entregas", nullable=false)
-    public int getJlrIdEntregas() {
-        return this.jlrIdEntregas;
-    }
-    
-    public void setJlrIdEntregas(int jlrIdEntregas) {
-        this.jlrIdEntregas = jlrIdEntregas;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="jlr_data_hora", length=19)
-    public Date getJlrDataHora() {
-        return this.jlrDataHora;
-    }
-    
-    public void setJlrDataHora(Date jlrDataHora) {
-        this.jlrDataHora = jlrDataHora;
-    }
-
-    
-    @Column(name="jlr_status", nullable=false, length=20)
+    @Column(name="jlr_status", length=20)
     public String getJlrStatus() {
         return this.jlrStatus;
     }
@@ -106,12 +117,12 @@ public class JlrVendas  implements java.io.Serializable {
     }
 
     
-    @Column(name="jlr_total", nullable=false, precision=10)
-    public String getJlrTotal() {
+    @Column(name="jlr_total", precision=10)
+    public Double getJlrTotal() {
         return this.jlrTotal;
     }
     
-    public void setJlrTotal(String jlrTotal) {
+    public void setJlrTotal(Double jlrTotal) {
         this.jlrTotal = jlrTotal;
     }
 

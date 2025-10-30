@@ -1,12 +1,16 @@
 package bean;
-// Generated 12/10/2025 19:53:29 by Hibernate Tools 4.3.1
+// Generated 29/10/2025 15:23:18 by Hibernate Tools 4.3.1
 
 
-
+import java.lang.Double;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="jlr_produtos"
-    ,catalog="joao_roa"
+    ,catalog="db_joao_roa"
 )
 public class JlrProdutos  implements java.io.Serializable {
 
@@ -24,24 +28,26 @@ public class JlrProdutos  implements java.io.Serializable {
      private int idJlrProdutos;
      private String jlrNome;
      private String jlrDescricao;
-     private String jlrPreco;
+     private Double jlrPreco;
      private String jlrTipo;
      private int jlrEstoque;
      private Date jlrDataCadastro;
+     private Set jlrVendasprodutoses = new HashSet(0);
 
     public JlrProdutos() {
     }
 
 	
-    public JlrProdutos(int idJlrProdutos, String jlrNome, String jlrDescricao, String jlrPreco, String jlrTipo, int jlrEstoque) {
+    public JlrProdutos(int idJlrProdutos, String jlrNome, String jlrDescricao, Double jlrPreco, String jlrTipo, int jlrEstoque, Date jlrDataCadastro) {
         this.idJlrProdutos = idJlrProdutos;
         this.jlrNome = jlrNome;
         this.jlrDescricao = jlrDescricao;
         this.jlrPreco = jlrPreco;
         this.jlrTipo = jlrTipo;
         this.jlrEstoque = jlrEstoque;
+        this.jlrDataCadastro = jlrDataCadastro;
     }
-    public JlrProdutos(int idJlrProdutos, String jlrNome, String jlrDescricao, String jlrPreco, String jlrTipo, int jlrEstoque, Date jlrDataCadastro) {
+    public JlrProdutos(int idJlrProdutos, String jlrNome, String jlrDescricao, Double jlrPreco, String jlrTipo, int jlrEstoque, Date jlrDataCadastro, Set jlrVendasprodutoses) {
        this.idJlrProdutos = idJlrProdutos;
        this.jlrNome = jlrNome;
        this.jlrDescricao = jlrDescricao;
@@ -49,6 +55,7 @@ public class JlrProdutos  implements java.io.Serializable {
        this.jlrTipo = jlrTipo;
        this.jlrEstoque = jlrEstoque;
        this.jlrDataCadastro = jlrDataCadastro;
+       this.jlrVendasprodutoses = jlrVendasprodutoses;
     }
    
      @Id 
@@ -85,11 +92,11 @@ public class JlrProdutos  implements java.io.Serializable {
 
     
     @Column(name="jlr_preco", nullable=false, precision=10)
-    public String getJlrPreco() {
+    public Double getJlrPreco() {
         return this.jlrPreco;
     }
     
-    public void setJlrPreco(String jlrPreco) {
+    public void setJlrPreco(Double jlrPreco) {
         this.jlrPreco = jlrPreco;
     }
 
@@ -113,14 +120,23 @@ public class JlrProdutos  implements java.io.Serializable {
         this.jlrEstoque = jlrEstoque;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="jlr_data_cadastro", length=19)
+    @Temporal(TemporalType.DATE)
+    @Column(name="jlr_data_cadastro", nullable=false, length=10)
     public Date getJlrDataCadastro() {
         return this.jlrDataCadastro;
     }
     
     public void setJlrDataCadastro(Date jlrDataCadastro) {
         this.jlrDataCadastro = jlrDataCadastro;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="jlrProdutos")
+    public Set getJlrVendasprodutoses() {
+        return this.jlrVendasprodutoses;
+    }
+    
+    public void setJlrVendasprodutoses(Set jlrVendasprodutoses) {
+        this.jlrVendasprodutoses = jlrVendasprodutoses;
     }
 
 

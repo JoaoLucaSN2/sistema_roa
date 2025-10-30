@@ -73,16 +73,11 @@
                               </Group>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jFmtDataNasc" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="jFmtDataNasc" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                                      <Component id="jChbAtivo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCboAtivo" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -130,7 +125,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jChbAtivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCboAtivo" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jPwfSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jCboNivel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -246,7 +241,10 @@
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jChbAtivo">
+    <Component class="javax.swing.JCheckBox" name="jCboAtivo">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCboAtivoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtNome">
       <Events>
