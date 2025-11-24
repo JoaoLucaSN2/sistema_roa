@@ -38,29 +38,29 @@ public class JDlgVendas extends javax.swing.JDialog {
     public JDlgVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         setTitle("Tabela de Vendas");
         setLocationRelativeTo(null);
 
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
-            jCboClientes.addItem((JlrClientes) lista.get(i));
+            jCboJlrClientes.addItem((JlrClientes) lista.get(i));
         }
 
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         List listaUsuarios = (List) usuariosDAO.listAll();
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            jCboUsuarios.addItem((JlrUsuarios) listaUsuarios.get(i));
+            jCboJlrUsuarios.addItem((JlrUsuarios) listaUsuarios.get(i));
         }
         VendedorDAO vendedorDAO = new VendedorDAO();
         List listaVendedor = (List) vendedorDAO.listAll();
         for (int i = 0; i < listaVendedor.size(); i++) {
-            jCboVendedor.addItem((JlrVendedor) listaVendedor.get(i));
+            jCboJlrVendedor.addItem((JlrVendedor) listaVendedor.get(i));
 
             try {
                 mascaraData = new MaskFormatter("##/##/####");;
-                jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
+                jFmtJlrData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
             } catch (ParseException ex) {
                 Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -68,25 +68,25 @@ public class JDlgVendas extends javax.swing.JDialog {
     }
 
     public void beanView(JlrVendas jlrVendas) {
-        jTxtCodigo.setText(Util.intToStr(jlrVendas.getIdJlrVendas()));
-        jTxtStatus.setText(jlrVendas.getJlrStatus());
-        jFmtData.setText(Util.dateToStr(jlrVendas.getJlrData()));
-        jTxtTotal.setText(Util.doubleToStr(jlrVendas.getJlrTotal()));
-    jCboClientes.setSelectedItem(jlrVendas.getJlrClientes());
-    jCboUsuarios.setSelectedItem(jlrVendas.getJlrUsuarios());
-    jCboVendedor.setSelectedItem(jlrVendas.getJlrVendedor());
+        jTxtJlrCodigo.setText(Util.intToStr(jlrVendas.getIdJlrVendas()));
+        jTxtJlrStatus.setText(jlrVendas.getJlrStatus());
+        jFmtJlrData.setText(Util.dateToStr(jlrVendas.getJlrData()));
+        jTxtJlrTotal.setText(Util.doubleToStr(jlrVendas.getJlrTotal()));
+    jCboJlrClientes.setSelectedItem(jlrVendas.getJlrClientes());
+    jCboJlrUsuarios.setSelectedItem(jlrVendas.getJlrUsuarios());
+    jCboJlrVendedor.setSelectedItem(jlrVendas.getJlrVendedor());
 
     }
 
     public JlrVendas viewBean() {
         JlrVendas jlrVendas = new JlrVendas();
-        jlrVendas.setIdJlrVendas(Util.strToInt(jTxtCodigo.getText()));
-        jlrVendas.setJlrStatus(jTxtStatus.getText());
-        jlrVendas.setJlrData(Util.strToDate(jFmtData.getText()));
-        jlrVendas.setJlrTotal(Util.strToDouble(jTxtTotal.getText()));        
-        jlrVendas.setJlrClientes((JlrClientes) jCboClientes.getSelectedItem());
-        jlrVendas.setJlrUsuarios((JlrUsuarios) jCboUsuarios.getSelectedItem());
-        jlrVendas.setJlrVendedor((JlrVendedor) jCboVendedor.getSelectedItem());
+        jlrVendas.setIdJlrVendas(Util.strToInt(jTxtJlrCodigo.getText()));
+        jlrVendas.setJlrStatus(jTxtJlrStatus.getText());
+        jlrVendas.setJlrData(Util.strToDate(jFmtJlrData.getText()));
+        jlrVendas.setJlrTotal(Util.strToDouble(jTxtJlrTotal.getText()));        
+        jlrVendas.setJlrClientes((JlrClientes) jCboJlrClientes.getSelectedItem());
+        jlrVendas.setJlrUsuarios((JlrUsuarios) jCboJlrUsuarios.getSelectedItem());
+        jlrVendas.setJlrVendedor((JlrVendedor) jCboJlrVendedor.getSelectedItem());
         return jlrVendas;
 
     }
@@ -111,22 +111,22 @@ public class JDlgVendas extends javax.swing.JDialog {
         jBtnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTxtTotal = new javax.swing.JTextField();
+        jTxtJlrTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTxtStatus = new javax.swing.JTextField();
+        jTxtJlrStatus = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jFmtData = new javax.swing.JFormattedTextField();
-        jCboClientes = new javax.swing.JComboBox<JlrClientes>();
-        jCboUsuarios = new javax.swing.JComboBox<JlrUsuarios>();
+        jFmtJlrData = new javax.swing.JFormattedTextField();
+        jCboJlrClientes = new javax.swing.JComboBox<JlrClientes>();
+        jCboJlrUsuarios = new javax.swing.JComboBox<JlrUsuarios>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTxtCodigo = new javax.swing.JTextField();
+        jTxtJlrCodigo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jBtnIncluir1 = new javax.swing.JButton();
-        jBtnAlterar1 = new javax.swing.JButton();
-        jBtnExcluir1 = new javax.swing.JButton();
-        jCboVendedor = new javax.swing.JComboBox<JlrVendedor>();
+        jBtnIncluirProd = new javax.swing.JButton();
+        jBtnAlterarProd = new javax.swing.JButton();
+        jBtnExcluirProd = new javax.swing.JButton();
+        jCboJlrVendedor = new javax.swing.JComboBox<JlrVendedor>();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -199,9 +199,9 @@ public class JDlgVendas extends javax.swing.JDialog {
 
         jLabel4.setText("Status");
 
-        jCboClientes.addActionListener(new java.awt.event.ActionListener() {
+        jCboJlrClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCboClientesActionPerformed(evt);
+                jCboJlrClientesActionPerformed(evt);
             }
         });
 
@@ -211,38 +211,38 @@ public class JDlgVendas extends javax.swing.JDialog {
 
         jLabel7.setText("Vendedor");
 
-        jTxtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        jTxtJlrCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCodigoActionPerformed(evt);
+                jTxtJlrCodigoActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Codigo");
 
-        jBtnIncluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
-        jBtnIncluir1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
+        jBtnIncluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnIncluir1ActionPerformed(evt);
+                jBtnIncluirProdActionPerformed(evt);
             }
         });
 
-        jBtnAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
-        jBtnAlterar1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
+        jBtnAlterarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnAlterar1ActionPerformed(evt);
+                jBtnAlterarProdActionPerformed(evt);
             }
         });
 
-        jBtnExcluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
-        jBtnExcluir1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnExcluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
+        jBtnExcluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnExcluir1ActionPerformed(evt);
+                jBtnExcluirProdActionPerformed(evt);
             }
         });
 
-        jCboVendedor.addActionListener(new java.awt.event.ActionListener() {
+        jCboJlrVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCboVendedorActionPerformed(evt);
+                jCboJlrVendedorActionPerformed(evt);
             }
         });
 
@@ -251,107 +251,125 @@ public class JDlgVendas extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel8)
-                .addGap(140, 140, 140)
-                .addComponent(jLabel4)
-                .addGap(149, 149, 149)
-                .addComponent(jLabel3)
-                .addGap(145, 145, 145)
-                .addComponent(jLabel2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jLabel6)
-                .addGap(144, 144, 144)
-                .addComponent(jLabel5)
-                .addGap(153, 153, 153)
-                .addComponent(jLabel7))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBtnExcluir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnAlterar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnIncluir1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jBtnIncluir)
-                        .addGap(20, 20, 20)
-                        .addComponent(jBtnAlterar)
-                        .addGap(20, 20, 20)
-                        .addComponent(jBtnExcluir)
-                        .addGap(20, 20, 20)
-                        .addComponent(jBtnConfirmar)
-                        .addGap(20, 20, 20)
-                        .addComponent(jBtnCancelar)
-                        .addGap(20, 20, 20)
-                        .addComponent(jBtnPesquisar))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addComponent(jLabel1)
                         .addGap(105, 105, 105)
-                        .addComponent(jCboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jCboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addComponent(jCboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jCboJlrUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jCboJlrClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jCboJlrVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jBtnExcluirProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnAlterarProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnIncluirProd)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jBtnIncluir)
+                                .addGap(20, 20, 20)
+                                .addComponent(jBtnAlterar)
+                                .addGap(20, 20, 20)
+                                .addComponent(jBtnExcluir)
+                                .addGap(20, 20, 20)
+                                .addComponent(jBtnConfirmar)
+                                .addGap(20, 20, 20)
+                                .addComponent(jBtnCancelar)
+                                .addGap(20, 20, 20)
+                                .addComponent(jBtnPesquisar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTxtJlrCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTxtJlrStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jFmtJlrData, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTxtJlrTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFmtData, jTxtCodigo, jTxtStatus, jTxtTotal});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFmtJlrData, jTxtJlrCodigo, jTxtJlrStatus, jTxtJlrTotal});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(9, 9, 9)
+                        .addComponent(jTxtJlrStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(9, 9, 9)
+                                .addComponent(jFmtJlrData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2))
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTxtJlrCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtJlrTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(10, 10, 10)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCboJlrUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCboJlrVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCboJlrClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBtnIncluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnIncluirProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
-                        .addComponent(jBtnAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnAlterarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
-                        .addComponent(jBtnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnExcluirProd, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnIncluir)
@@ -364,23 +382,25 @@ public class JDlgVendas extends javax.swing.JDialog {
                 .addGap(28, 28, 28))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCboClientes, jCboUsuarios});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFmtJlrData, jTxtJlrCodigo, jTxtJlrStatus, jTxtJlrTotal});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
-        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterar1, jBtnPesquisar);
-        jTxtCodigo.grabFocus();
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
+        Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterarProd, jBtnPesquisar);
+        jTxtJlrCodigo.grabFocus();
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        jTxtStatus.grabFocus();
+        jTxtJlrStatus.grabFocus();
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
@@ -395,9 +415,9 @@ public class JDlgVendas extends javax.swing.JDialog {
             // usuariosDAO.update(viewBean());
         }
 
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -406,7 +426,7 @@ public class JDlgVendas extends javax.swing.JDialog {
             VendasDAO vendasDAO = new VendasDAO();
             vendasDAO.delete(viewBean());
         }
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -416,35 +436,35 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.limpar(jTxtCodigo, jTxtStatus, jFmtData, jTxtTotal, jCboClientes, jCboUsuarios, jCboVendedor);
+        Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
 
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
-    private void jCboClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboClientesActionPerformed
+    private void jCboJlrClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboJlrClientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCboClientesActionPerformed
+    }//GEN-LAST:event_jCboJlrClientesActionPerformed
 
-    private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed
+    private void jTxtJlrCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtJlrCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCodigoActionPerformed
+    }//GEN-LAST:event_jTxtJlrCodigoActionPerformed
 
-    private void jBtnIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir1ActionPerformed
+    private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnIncluir1ActionPerformed
+    }//GEN-LAST:event_jBtnIncluirProdActionPerformed
 
-    private void jBtnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar1ActionPerformed
+    private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnAlterar1ActionPerformed
+    }//GEN-LAST:event_jBtnAlterarProdActionPerformed
 
-    private void jBtnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluir1ActionPerformed
+    private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnExcluir1ActionPerformed
+    }//GEN-LAST:event_jBtnExcluirProdActionPerformed
 
-    private void jCboVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboVendedorActionPerformed
+    private void jCboJlrVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboJlrVendedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCboVendedorActionPerformed
+    }//GEN-LAST:event_jCboJlrVendedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,18 +518,18 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAlterar;
-    private javax.swing.JButton jBtnAlterar1;
+    private javax.swing.JButton jBtnAlterarProd;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnConfirmar;
     private javax.swing.JButton jBtnExcluir;
-    private javax.swing.JButton jBtnExcluir1;
+    private javax.swing.JButton jBtnExcluirProd;
     private javax.swing.JButton jBtnIncluir;
-    private javax.swing.JButton jBtnIncluir1;
+    private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<JlrClientes> jCboClientes;
-    private javax.swing.JComboBox<JlrUsuarios> jCboUsuarios;
-    private javax.swing.JComboBox<JlrVendedor> jCboVendedor;
-    private javax.swing.JFormattedTextField jFmtData;
+    private javax.swing.JComboBox<JlrClientes> jCboJlrClientes;
+    private javax.swing.JComboBox<JlrUsuarios> jCboJlrUsuarios;
+    private javax.swing.JComboBox<JlrVendedor> jCboJlrVendedor;
+    private javax.swing.JFormattedTextField jFmtJlrData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -521,8 +541,8 @@ public class JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtCodigo;
-    private javax.swing.JTextField jTxtStatus;
-    private javax.swing.JTextField jTxtTotal;
+    private javax.swing.JTextField jTxtJlrCodigo;
+    private javax.swing.JTextField jTxtJlrStatus;
+    private javax.swing.JTextField jTxtJlrTotal;
     // End of variables declaration//GEN-END:variables
 }

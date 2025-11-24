@@ -23,6 +23,7 @@ import tools.Util;
 public class JDlgUsuarios extends javax.swing.JDialog {
 
     private boolean incluir;
+    private boolean pesquisado;
 
     private MaskFormatter mascaraDataNasc, mascaraCpf;
 
@@ -44,6 +45,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         } catch (ParseException ex) {
             Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+        pesquisado = false;
     }
 
     public void beanView(JlrUsuarios jlrUsuarios) {
@@ -321,10 +323,10 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         JlrUsuarios jlrUsuarios = viewBean();
         if (incluir == true) {
             usuariosDAO.insert(jlrUsuarios);
-          //  usuariosDAO.insert(viewBean());
+            //  usuariosDAO.insert(viewBean());
         } else {
             usuariosDAO.update(jlrUsuarios);
-           // usuariosDAO.update(viewBean());
+            // usuariosDAO.update(viewBean());
         }
 
         Util.habilitar(false, jBtnConfirmar, jBtnCancelar, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jCboAtivo);
@@ -333,10 +335,15 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jCboAtivo);
-        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        jTxtNome.grabFocus();
-        incluir = false;
+
+        if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+            Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc, jPwfSenha, jCboNivel, jCboAtivo);
+            Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar);
+            jTxtNome.requestFocusInWindow();
+            incluir = false;
+        } else {
+            Util.mensagem("Oh seu loco precisa pesquisar para alterar");
+        }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -346,18 +353,26 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
+     
+         if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
         if (Util.pergunta("Deseja excluir ?") == true) {
             UsuariosDAO usuariosDAO = new UsuariosDAO();
             usuariosDAO.delete(viewBean());
         }
         Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNasc,
                 jPwfSenha, jCboNivel, jCboAtivo);
+         }
+         else {
+              Util.mensagem("Oh seu loco precisa pesquisar para excluir");
+         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
         jDlgUsuariosPesquisar.setTelaPai(this);
         jDlgUsuariosPesquisar.setVisible(true);
+        pesquisado = true;
+
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jTxtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtCodigoFocusLost
