@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
 import dao.VendedorDAO;
 import bean.JlrVendedor;
 import java.util.List;
+import tools.Util;
 /**
  *
  * @author ENTERPRISE
@@ -57,6 +59,11 @@ public void setTelaPai(JDlgVendedor jDlgVendedor) {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOk2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
@@ -90,10 +97,22 @@ public void setTelaPai(JDlgVendedor jDlgVendedor) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk2ActionPerformed
-      JlrVendedor vendedor =  controllerVendedor.getBean( jTable1.getSelectedRow() );
-        jDlgVendedor.beanView(vendedor);
-        this.setVisible(false); // TODO add your handling code here:
+
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
+            JlrVendedor jlrVendedor = controllerVendedor.getBean(jTable1.getSelectedRow());
+            jDlgVendedor.beanView(jlrVendedor);
+            this.setVisible(false);
+        } // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOk2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:]
+         if (evt.getClickCount() == 2) {
+            jBtnOk2ActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

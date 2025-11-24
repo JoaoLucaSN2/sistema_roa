@@ -5,9 +5,9 @@
 package view;
 
 import bean.JlrProdutos;
-import bean.JlrUsuarios;
 import dao.ProdutosDAO;
 import java.util.List;
+import tools.Util;
 
 /**
  *
@@ -64,6 +64,11 @@ ControllerProdutos controllerProdutos;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOk3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
@@ -97,10 +102,21 @@ ControllerProdutos controllerProdutos;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk3ActionPerformed
-JlrProdutos produtos =  controllerProdutos.getBean( jTable1.getSelectedRow() );
-        jDlgProdutos.beanView(produtos);
-        this.setVisible(false);         // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
+            JlrProdutos jlrProdutos = controllerProdutos.getBean(jTable1.getSelectedRow());
+            jDlgProdutos.beanView(jlrProdutos);
+            this.setVisible(false);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOk3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            jBtnOk3ActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

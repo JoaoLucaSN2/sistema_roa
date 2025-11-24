@@ -5,10 +5,9 @@
 package view;
 
 import bean.JlrClientes;
-import bean.JlrUsuarios;
 import dao.ClientesDAO;
-import dao.UsuariosDAO;
 import java.util.List;
+import tools.Util;
 
 /**
  *
@@ -64,6 +63,11 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOk1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
@@ -96,10 +100,22 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
-        JlrClientes clientes =  controllerClientes.getBean( jTable1.getSelectedRow() );
-        jDlgClientes.beanView(clientes);
-        this.setVisible(false);
+
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
+            JlrClientes jlrClientes = controllerClientes.getBean(jTable1.getSelectedRow());
+            jDlgClientes.beanView(jlrClientes);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOk1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBtnOk1ActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
