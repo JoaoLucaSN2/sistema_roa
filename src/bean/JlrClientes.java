@@ -219,11 +219,19 @@ public class JlrClientes  implements java.io.Serializable {
 
 @Override
     public String toString() {
-        return this.jlrNome;
+        return this.idJlrClientes + " - " + this.jlrNome;
     }
 
-
-
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JlrClientes) {
+            JlrClientes jlrClientes = (JlrClientes) object;
+            if (jlrClientes.getIdJlrClientes() == this.getIdJlrClientes()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
 

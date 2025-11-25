@@ -24,7 +24,7 @@ public class JlrVendasprodutos  implements java.io.Serializable {
      private int idJlrVendasProdutos;
      private JlrProdutos jlrProdutos;
      private JlrVendas jlrVendas;
-     private Integer jlrQuantidade;
+     private int jlrQuantidade;
      private Double jlrValorUnitario;
      private Double jlrDesconto;
 
@@ -78,11 +78,11 @@ public class JlrVendasprodutos  implements java.io.Serializable {
 
     
     @Column(name="jlr_quantidade")
-    public Integer getJlrQuantidade() {
+    public int getJlrQuantidade() {
         return this.jlrQuantidade;
     }
     
-    public void setJlrQuantidade(Integer jlrQuantidade) {
+    public void setJlrQuantidade(int jlrQuantidade) {
         this.jlrQuantidade = jlrQuantidade;
     }
 

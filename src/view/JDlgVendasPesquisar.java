@@ -101,8 +101,15 @@ public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBtnOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-       if (jTable1.getSelectedRow() == -1) {
+        if (jTable1.getSelectedRow() == -1) {
             Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
         } else {
             JlrVendas jlrVendas = controllerVendas.getBean(jTable1.getSelectedRow());
@@ -110,13 +117,6 @@ public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
             this.setVisible(false);
         }  // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOkActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-         if (evt.getClickCount() == 2) {
-            jBtnOkActionPerformed(null);
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

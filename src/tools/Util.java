@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -69,16 +71,19 @@ public class Util {
     }
 
     public static Date strToDate(String data)  {
-    try {
-        return new SimpleDateFormat("dd/MM/yyyy").parse(data);
-    } catch (Exception e) {
+SimpleDateFormat fm = new SimpleDateFormat("dd/MM/YYYY");
+        try {
+            return fm.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
-    }
     }
 
    public static String dateToStr(Date data) {
           if (data == null) return "";
     return new SimpleDateFormat("dd/MM/yyyy").format(data);
+    
     }
 
     public static boolean perguntar(String deseja_excluir_) {

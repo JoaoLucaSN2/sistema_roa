@@ -119,14 +119,25 @@ public class JlrVendedor  implements java.io.Serializable {
     public void setJlrAtivo(String jlrAtivo) {
         this.jlrAtivo = jlrAtivo;
     }
-
-
-
+    
 @Override
-    public String toString() {
-        return this.jlrNome;
+public String toString() {
+        return this.idJlrVendedor + " - " + this.jlrNome;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JlrVendedor) {
+            JlrVendedor jlrVendedor = (JlrVendedor) object;
+            if (jlrVendedor.getIdJlrVendedor() == this.getIdJlrVendedor()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
-
+//@Override
+  //  public String toString() {
+     //   return this.jlrNome;
+   // }
 

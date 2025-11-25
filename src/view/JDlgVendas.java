@@ -12,8 +12,11 @@ import bean.JlrVendas;
 import bean.JlrVendedor;
 import dao.VendedorDAO;
 import dao.VendasDAO;
+import bean.JlrVendasprodutos;
+import dao.VendasProdutosDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,7 +34,7 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private boolean incluir;
     private MaskFormatter mascaraData;
-
+    ControllerVendasProdutos controllerVendasProd;
     /**
      * Creates new form JDlgVendas
      */
@@ -64,6 +67,9 @@ public class JDlgVendas extends javax.swing.JDialog {
             } catch (ParseException ex) {
                 Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
             }
+        controllerVendasProd = new ControllerVendasProdutos();
+        controllerVendasProd.setList(new ArrayList());
+        jTable1.setModel(controllerVendasProd);
         }
     }
 
@@ -75,7 +81,10 @@ public class JDlgVendas extends javax.swing.JDialog {
     jCboJlrClientes.setSelectedItem(jlrVendas.getJlrClientes());
     jCboJlrUsuarios.setSelectedItem(jlrVendas.getJlrUsuarios());
     jCboJlrVendedor.setSelectedItem(jlrVendas.getJlrVendedor());
-
+    
+        VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+        List lista = (List) vendasProdutosDAO.listProdutos(jlrVendas);
+        controllerVendasProd.setList(lista);
     }
 
     public JlrVendas viewBean() {
@@ -394,6 +403,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnAlterarProd, jBtnPesquisar);
         jTxtJlrCodigo.grabFocus();
+        controllerVendasProd.setList(new ArrayList());
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -401,18 +411,24 @@ public class JDlgVendas extends javax.swing.JDialog {
         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         jTxtJlrStatus.grabFocus();
+        controllerVendasProd.setList(new ArrayList());
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        VendasDAO vendasDAO = new VendasDAO();
+         VendasDAO vendasDAO = new VendasDAO();
+        VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
         JlrVendas jlrVendas = viewBean();
         if (incluir == true) {
             vendasDAO.insert(jlrVendas);
-            //  usuariosDAO.insert(viewBean());
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                JlrVendasprodutos vendasProdutos = controllerVendasProd.getBean(ind);
+                vendasProdutos.setJlrVendas(jlrVendas);
+                vendasProdutosDAO.insert(vendasProdutos);
+            }
         } else {
             vendasDAO.update(jlrVendas);
-            // usuariosDAO.update(viewBean());
+
         }
 
         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);

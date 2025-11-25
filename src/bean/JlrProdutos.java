@@ -134,10 +134,23 @@ public class JlrProdutos  implements java.io.Serializable {
     public void setJlrVendasprodutoses(Set jlrVendasprodutoses) {
         this.jlrVendasprodutoses = jlrVendasprodutoses;
     }
+    
+public String toString() {
+        return this.idJlrProdutos + " - " + this.jlrNome;
+    }
 
-
-
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JlrProdutos) {
+            JlrProdutos jlrProdutos = (JlrProdutos) object;
+            if (jlrProdutos.getIdJlrProdutos() == this.getIdJlrProdutos()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
+
 
 
