@@ -439,7 +439,14 @@ public class JDlgVendas extends javax.swing.JDialog {
             }
         } else {
             vendasDAO.update(jlrVendas);
-
+            
+            vendasProdutosDAO.deleteProdutos(jlrVendas);
+            
+           for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                JlrVendasprodutos vendasProdutos = controllerVendasProd.getBean(ind);
+                vendasProdutos.setJlrVendas(jlrVendas);
+                vendasProdutosDAO.insert(vendasProdutos);
+            }
         }
         Util.habilitar(false, jTxtJlrCodigo, jBtnConfirmar, jBtnCancelar, jBtnAlterarProd, jBtnExcluirProd, jBtnIncluirProd, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);

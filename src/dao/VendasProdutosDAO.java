@@ -43,6 +43,10 @@ public class VendasProdutosDAO extends AbstractDAO{
         session.delete(object);
         session.getTransaction().commit();        
     }
+    
+    public void deleteProdutos(JlrVendas jlrVendas){
+    
+    }
 
     @Override
     public Object list(int codigo) {
