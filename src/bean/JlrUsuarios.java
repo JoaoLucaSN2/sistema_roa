@@ -131,11 +131,20 @@ public class JlrUsuarios  implements java.io.Serializable {
         this.jlrAtivo = jlrAtivo;
     }
 
-
+   @Override
+    public boolean equals(Object object) {
+        if (object instanceof JlrUsuarios) {
+            JlrUsuarios jlrUsuarios = (JlrUsuarios) object;
+            if (jlrUsuarios.getIdJlrUsuarios()== this.getIdJlrUsuarios()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 @Override
     public String toString() {
-        return this.jlrNome;
+        return this.idJlrUsuarios + " - " + this.jlrNome;
     }
 
 

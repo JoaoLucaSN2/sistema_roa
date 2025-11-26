@@ -44,8 +44,9 @@ made subject to such option by the copyright holder.
   <session-factory>
     
    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">joao_roa</property>
+    <property name="hibernate.connection.password">joao_roa</property>
     <mapping class="bean.JlrVendas"/>
     <mapping class="bean.JlrVendasprodutos"/>
     <mapping class="bean.JlrClientes"/>

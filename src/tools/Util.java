@@ -50,8 +50,8 @@ public class Util {
     }
 
     public static boolean pergunta(String cad) {
-        int resposta = JOptionPane.showConfirmDialog(null, cad, "Tem Certeza?", JOptionPane.YES_NO_OPTION);
-    return resposta == JOptionPane.YES_OPTION;
+       JOptionPane.showConfirmDialog(null, cad);
+        return true;
 }
     public static int strToInt(String num) {
         return Integer.parseInt(num);
@@ -66,8 +66,9 @@ public class Util {
         return Double.parseDouble(num);
     }
 
+
     public static String doubleToStr(double num) {
-        return "";
+        return String.valueOf(num);
     }
 
     public static Date strToDate(String data)  {
