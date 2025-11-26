@@ -430,19 +430,22 @@ public class JDlgVendas extends javax.swing.JDialog {
             vendasDAO.update(jlrVendas);
 
         }
-
+        Util.habilitar(false, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
-
+        controllerVendasProd.setList(new ArrayList());
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if (Util.pergunta("Deseja excluir ?") == true) {
-            VendasDAO vendasDAO = new VendasDAO();
-            vendasDAO.delete(viewBean());
+       if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Oh seu loco, precisa selecionar uma linha.");
+        } else {
+            if (Util.perguntar("Deseja excluir o produto ?") == true) {
+                controllerVendasProd.removeBean(jTable1.getSelectedRow());
+            }
         }
-        Util.limpar(jTxtJlrCodigo, jTxtJlrStatus, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrUsuarios, jCboJlrVendedor);
+         controllerVendasProd.setList(new ArrayList());
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -468,10 +471,15 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
+        JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
+        jDlgVendasProdutos.setTelaAnterior(this);
+        jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
 
     private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
+        JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
+        jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarProdActionPerformed
 
     private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
