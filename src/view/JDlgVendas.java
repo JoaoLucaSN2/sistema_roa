@@ -103,8 +103,17 @@ public class JDlgVendas extends javax.swing.JDialog {
         VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
         List lista = (List) vendasProdutosDAO.listProdutos(jlrVendas);
         controllerVendasProd.setList(lista);
+        Total();
     }
-
+public void Total() {
+        double soma = 0.0;
+        int linhasProd = jTable1.getRowCount();
+        for (int i = 0; i < linhasProd; i++) {
+            JlrVendasprodutos vendasProd = controllerVendasProd.getBean(i);
+            soma += vendasProd.getJlrQuantidade() * vendasProd.getJlrValorUnitario();
+        }
+        jTxtJlrTotal.setText(Util.doubleToStr(soma));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

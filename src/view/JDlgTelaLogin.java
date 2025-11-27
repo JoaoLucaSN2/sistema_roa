@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
  * @author ENTERPRISE
  */
 public class JDlgTelaLogin extends javax.swing.JDialog {
+
     int tentativas = 0;
+
     /**
      * Creates new form JDlgTelaLogin
      */
@@ -21,18 +23,9 @@ public class JDlgTelaLogin extends javax.swing.JDialog {
         super(parent, modal);
         setLocationRelativeTo(null);
         initComponents();
-       
+
     }
- String nome = jTxtUsuarios.getText();
- if (usuario.getJlrSenha() == null) {
-        JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto");
-        tentativas++;
-        if (tentativas == 3) {
-            System.exit(0);
-        }
-    } else {
-        this.dispose();
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,22 +103,28 @@ public class JDlgTelaLogin extends javax.swing.JDialog {
 
     private void jTxtUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsuariosActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jTxtUsuariosActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-      UsuariosDAO usuariosDAO = new UsuariosDAO();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        String senha = new String(PwdSenha.getPassword());
+        String nome = jTxtUsuarios.getText();
+        JlrUsuarios usuario = usuariosDAO.login(nome, senha);
+        if (usuario.getJlrSenha() == null) {
+            JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto");
+            tentativas++;
+            if (tentativas == 3) {
+                System.exit(0);
+            }
+        } else {
+            this.dispose();
+        }
 
-   
-    String senha = new String(PwdSenha.getPassword());
-
-    JlrUsuarios usuario = usuariosDAO.login(nome, senha);
-
-    
-        
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       System.exit(0); // TODO add your handling code here:
+        System.exit(0); // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 
     /**

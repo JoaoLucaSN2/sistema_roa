@@ -26,6 +26,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private boolean incluir;
     private MaskFormatter mascaraDataCad;
+    private boolean pesquisado;
 
     /**
      * Creates new form JDlgProduto
@@ -41,7 +42,8 @@ public class JDlgProdutos extends javax.swing.JDialog {
             jFmtDataCadas.setFormatterFactory(new DefaultFormatterFactory(mascaraDataCad));
         } catch (ParseException ex) {
             Logger.getLogger(JDlgProdutos.class.getName()).log(Level.SEVERE, null, ex);
-         } 
+         }
+         pesquisado = false;
        }
        public void beanView(JlrProdutos jlrProdutos) {
         jTxtCodigo.setText(Util.intToStr(jlrProdutos.getIdJlrProdutos()));
@@ -302,10 +304,14 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-       Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+        if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+        Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
         Util.habilitar(false, jBtnIncluir ,jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         jTxtNome.grabFocus();
-          incluir = false;
+        incluir = false;
+         }else {
+            Util.mensagem("Oh seu loco precisa pesquisar para alterar");
+        }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFmtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtPrecoActionPerformed
@@ -338,11 +344,15 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtEstoqueActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-    if (Util.pergunta("Deseja excluir ?") == true) {
+        if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {   
+        if (Util.pergunta("Deseja excluir ?") == true) {
             ProdutosDAO produtosDAO = new ProdutosDAO();
             produtosDAO.delete(viewBean());
         } 
-     Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas); 
+ Util.limpar(jTxtCodigo, jTxtNome,  jTxtDescricao, jFmtPreco, jFmtTipo, jTxtEstoque, jFmtDataCadas);
+      } else {
+              Util.mensagem("Oh seu loco precisa pesquisar para excluir");
+         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed

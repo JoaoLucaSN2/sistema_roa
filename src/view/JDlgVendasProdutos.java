@@ -206,6 +206,9 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
         jlrVendasProdutos.setJlrQuantidade(Util.strToInt(jTxtQuantidade.getText()) );
         jlrVendasProdutos.setJlrValorUnitario(Util.strToDouble(jTxtValorUni.getText()) );
         jDlgVendas.controllerVendasProd.addBean(jlrVendasProdutos);
+        if (jDlgVendas != null) {
+            jDlgVendas.Total();
+        }
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

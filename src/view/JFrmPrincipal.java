@@ -17,8 +17,8 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         initComponents();
         setTitle("Sistema de Vendas e Compras");
         setExtendedState(MAXIMIZED_BOTH);
-       // JDlgTelaLogin jDlgTelaLogin = new JDlgTelaLogin(this,true);
-        //jDlgTelaLogin.setVisible(true);
+       JDlgTelaLogin jDlgTelaLogin = new JDlgTelaLogin(this,true);
+       jDlgTelaLogin.setVisible(true);
     }
 
     /**
