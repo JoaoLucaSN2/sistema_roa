@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
 
@@ -62,7 +63,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         List listaVendedor = (List) vendedorDAO.listAll();
         for (int i = 0; i < listaVendedor.size(); i++) {
             jCboJlrVendedor.addItem((JlrVendedor) listaVendedor.get(i));
-
+        }
             try {
                 mascaraData = new MaskFormatter("##/##/####");;
                 jFmtJlrData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
@@ -74,9 +75,12 @@ public class JDlgVendas extends javax.swing.JDialog {
             Util.limpar(jTxtJlrCodigo, jFmtJlrData, jTxtJlrTotal, jCboJlrClientes, jCboJlrVendedor, jCboJlrUsuarios);
             controllerVendasProd = new ControllerVendasProdutos();
             controllerVendasProd.setList(new ArrayList());
-            jTable1.setModel(controllerVendasProd);
-        }
+            jTable1.setModel(controllerVendasProd);             
     }
+    
+    public JTable getjTable1() {
+        return jTable1;
+    }  
 
     public JlrVendas viewBean() {
         JlrVendas jlrVendas = new JlrVendas();
@@ -507,7 +511,7 @@ public void Total() {
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
-        jDlgVendasProdutos.setTelaAnterior(this);
+        jDlgVendasProdutos.setTelaAnterior(this, null);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
 

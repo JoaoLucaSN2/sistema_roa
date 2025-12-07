@@ -32,8 +32,6 @@ public class JlrProdutos  implements java.io.Serializable {
      private String jlrTipo;
      private int jlrEstoque;
      private Date jlrDataCadastro;
-     private Set jlrVendasprodutoses = new HashSet(0);
-
     public JlrProdutos() {
     }
 
@@ -55,7 +53,7 @@ public class JlrProdutos  implements java.io.Serializable {
        this.jlrTipo = jlrTipo;
        this.jlrEstoque = jlrEstoque;
        this.jlrDataCadastro = jlrDataCadastro;
-       this.jlrVendasprodutoses = jlrVendasprodutoses;
+    
     }
    
      @Id 
@@ -131,9 +129,6 @@ public class JlrProdutos  implements java.io.Serializable {
     }
 
     
-    public void setJlrVendasprodutoses(Set jlrVendasprodutoses) {
-        this.jlrVendasprodutoses = jlrVendasprodutoses;
-    }
     
 public String toString() {
         return this.idJlrProdutos + " - " + this.jlrNome;

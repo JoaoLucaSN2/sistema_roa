@@ -89,6 +89,18 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
+        jTxtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNomeActionPerformed(evt);
+            }
+        });
+
+        jTxtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtValorActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Valor Maior que ");
 
         jBtnConsultar.setText("Consultar");
@@ -173,6 +185,14 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
         }
         controllerConsultasProdutos.setList(lista);
     }//GEN-LAST:event_jBtnConsultarActionPerformed
+
+    private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtNomeActionPerformed
+
+    private void jTxtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtValorActionPerformed
 
     /**
      * @param args the command line arguments
