@@ -71,7 +71,33 @@ public class UsuariosDAO extends AbstractDAO{
     session.getTransaction().commit();
     return usuario;
 }
-    
+   public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(JlrProdutos.class);
+        criteria.add(Restrictions.like("jlrNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listValor(double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(JlrProdutos.class);
+        criteria.add(Restrictions.ge("jlrPreco", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNomeValor(String nome, double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(JlrUsuarios.class);
+        criteria.add(Restrictions.like("jlrNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("jlrPreco", valor ));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    } 
     public static void main(String[] args) {
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.listAll();

@@ -5,9 +5,7 @@
 package view;
 
 import bean.JlrUsuarios;
-import dao.ProdutosDAO;
 import dao.UsuariosDAO;
-import dao.VendedorDAO;
 import java.util.ArrayList;
 import java.util.List;
 import tools.Util;
@@ -17,23 +15,23 @@ import view.JDlgUsuarios;
  *
  * @author Marcos
  */
-public class JDlgConsultaVendedor extends javax.swing.JDialog {
-  ControllerConsultasVendedor controllerConsultasVendedor;
+public class JDlgConsultaUsuarios extends javax.swing.JDialog {
+  ControllerConsultasUsuarios controllerConsultasUsuarios;
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
  
-    public JDlgConsultaVendedor(java.awt.Frame parent, boolean modal) {
+    public JDlgConsultaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Consultas de Produtos");
    
-        controllerConsultasVendedor = new ControllerConsultasVendedor();
-        ProdutosDAO produtosDAO = new ProdutosDAO();
+        controllerConsultasUsuarios = new ControllerConsultasUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista = new ArrayList();
-        controllerConsultasVendedor.setList(lista);
-        jTable1.setModel(controllerConsultasVendedor);
+        controllerConsultasUsuarios.setList(lista);
+        jTable1.setModel(controllerConsultasUsuarios);
         
     //    controllerUsuarios = new ControllerUsuarios();
     //    UsuariosDAO usuariosDAO = new UsuariosDAO();
@@ -173,18 +171,18 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
         // TODO add your handling code here:
-        VendedorDAO vendedorDAO = new VendedorDAO();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista;
         if ((jTxtNome.getText().isEmpty() == false) && (jTxtCpf.getText().isEmpty() == false)){
-            lista = (List) vendedorDAO.listNomeCpf(jTxtNome.getText(),jTxtCpf.getText());
+            lista = (List) usuariosDAO.listNomeCpf(jTxtNome.getText(),jTxtCpf.getText());
         }else if (jTxtNome.getText().isEmpty() == false){
-            lista  = (List) vendedorDAO.listNome(jTxtNome.getText());
+            lista  = (List) usuariosDAO.listNome(jTxtNome.getText());
         }else if (jTxtCpf.getText().isEmpty() == false){
-            lista = (List) vendedorDAO.listNomeCpf(jTxtCpf.getText(), jTxtNome.getText());
+            lista = (List) usuariosDAO.listNomeCpf(jTxtCpf.getText(), jTxtNome.getText());
         }else {
-            lista = (List) vendedorDAO.listAll();
+            lista = (List) usuariosDAO.listAll();
         }
-        controllerConsultasVendedor.setList(lista);
+        controllerConsultasUsuarios.setList(lista);
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
@@ -212,14 +210,22 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +238,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaVendedor dialog = new JDlgConsultaVendedor(new javax.swing.JFrame(), true);
+                JDlgConsultaUsuarios dialog = new JDlgConsultaUsuarios(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

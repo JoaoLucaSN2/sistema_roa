@@ -40,7 +40,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTxtValor" min="-2" pref="261" max="-2" attributes="0"/>
+                              <Component id="jTxtCpf" min="-2" pref="261" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jBtnConsultar" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -65,7 +65,7 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTxtValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTxtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBtnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -122,14 +122,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtNomeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtValor">
+    <Component class="javax.swing.JTextField" name="jTxtCpf">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtValorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtCpfActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Valor Maior que "/>
+        <Property name="text" type="java.lang.String" value="Cpf"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnConsultar">

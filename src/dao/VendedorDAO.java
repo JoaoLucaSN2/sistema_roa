@@ -60,7 +60,7 @@ public class VendedorDAO extends AbstractDAO{
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
-    } public Object listValor(String cpf) {
+    } public Object listCpf(String cpf) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(JlrVendedor.class);
         criteria.add(Restrictions.ge("jlrCpf", cpf ));

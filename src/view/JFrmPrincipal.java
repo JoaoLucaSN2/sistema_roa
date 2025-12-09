@@ -17,8 +17,8 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         initComponents();
         setTitle("Sistema de Vendas e Compras");
         setExtendedState(MAXIMIZED_BOTH);
-       JDlgTelaLogin jDlgTelaLogin = new JDlgTelaLogin(this,true);
-       jDlgTelaLogin.setVisible(true);
+       // JDlgTelaLogin jDlgTelaLogin = new JDlgTelaLogin(this,true);
+      // jDlgTelaLogin.setVisible(true);
     }
 
     /**
@@ -211,13 +211,15 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(2059, 2059, 2059)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 252, Short.MAX_VALUE))
+                .addContainerGap(2020, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,28 +233,28 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void jMnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuClientesActionPerformed
         JDlgClientes jDlgClientes = new JDlgClientes(this, true);
-jDlgClientes.setVisible(true);
+        jDlgClientes.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMnuClientesActionPerformed
 
     private void jMnuEntregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuEntregasActionPerformed
-JDlgVendedor jDlgEntregas = new JDlgVendedor(this, true);
-jDlgEntregas.setVisible(true);        // TODO add your handling code here:
+        JDlgVendedor jDlgEntregas = new JDlgVendedor(this, true);
+        jDlgEntregas.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMnuEntregasActionPerformed
 
     private void jMnuProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuProdutosActionPerformed
         // TODO add your handling code here:
         JDlgProdutos jDlgProdutos = new JDlgProdutos(this, true);
-jDlgProdutos.setVisible(true);
+        jDlgProdutos.setVisible(true);
     }//GEN-LAST:event_jMnuProdutosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       JDlgVendas jDlgVendas = new JDlgVendas(this, true);
-jDlgVendas.setVisible(true); // TODO add your handling code here:
+        JDlgVendas jDlgVendas = new JDlgVendas(this, true);
+        jDlgVendas.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuSairActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jMnuSairActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
