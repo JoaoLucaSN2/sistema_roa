@@ -174,11 +174,11 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista;
         if ((jTxtNome.getText().isEmpty() == false) && (jTxtCpf.getText().isEmpty() == false)){
-            lista = (List) usuariosDAO.listNomeCpf(jTxtNome.getText(),jTxtCpf.getText());
+            lista = (List) usuariosDAO.listNomeNivel(jTxtNome.getText(),jCboNivel.getSelectedIndex());
         }else if (jTxtNome.getText().isEmpty() == false){
-            lista  = (List) usuariosDAO.listNome(jTxtNome.getText());
+            lista  = (List) usuariosDAO.listNomeNivel(jTxtNome.getText(),jCboNivel.getSelectedIndex());
         }else if (jTxtCpf.getText().isEmpty() == false){
-            lista = (List) usuariosDAO.listNomeCpf(jTxtCpf.getText(), jTxtNome.getText());
+            lista = (List) usuariosDAO.listNomeNivel(jTxtCpf.getText(),jCboNivel.getSelectedIndex());
         }else {
             lista = (List) usuariosDAO.listAll();
         }

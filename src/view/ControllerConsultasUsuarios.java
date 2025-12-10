@@ -46,7 +46,7 @@ public class ControllerConsultasUsuarios extends AbstractTableModel {
         } else if (columnIndex ==1) {
             return jlrUsuarios.getJlrNome();        
         } else if (columnIndex ==2) {
-            return jlrUsuarios.getJlrTelefone();
+            return jlrUsuarios.getJlrNivel();
         } 
         return "";
     }
@@ -58,7 +58,7 @@ public class ControllerConsultasUsuarios extends AbstractTableModel {
         } else if ( columnIndex == 1) {
             return "Nome";         
         } else if ( columnIndex == 2) {
-            return "Telefone";
+            return "Nivel";
         } 
         return "";
     }
