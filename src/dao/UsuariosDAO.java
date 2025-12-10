@@ -65,7 +65,7 @@ public class UsuariosDAO extends AbstractDAO{
     public JlrUsuarios login(String nome, String senha) {
     session.beginTransaction();
     Criteria criteria = session.createCriteria(JlrUsuarios.class);
-    criteria.add(Restrictions.eq("jlrNome", nome));
+    criteria.add(Restrictions.like("jlrNome", nome));
     criteria.add(Restrictions.eq("jlrSenha", senha));
     JlrUsuarios usuario = (JlrUsuarios) criteria.uniqueResult();
     session.getTransaction().commit();
@@ -83,7 +83,7 @@ public class UsuariosDAO extends AbstractDAO{
     public Object listNivel(int nivel) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(JlrUsuarios.class);
-        criteria.add(Restrictions.eq("jlrNivel", nivel));
+        criteria.add(Restrictions.eq("jlrNivel", nivel ));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
@@ -93,7 +93,7 @@ public class UsuariosDAO extends AbstractDAO{
         session.beginTransaction();
         Criteria criteria = session.createCriteria(JlrUsuarios.class);
         criteria.add(Restrictions.like("jlrNome", "%" + nome + "%"));
-        criteria.add(Restrictions.ge("jlrNivel", nivel ));
+        criteria.add(Restrictions.eq("jlrNivel", nivel ));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

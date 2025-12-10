@@ -56,7 +56,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gravar.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-telefone-comercial-24.png"))); // NOI18N
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -67,26 +67,26 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho-de-compras1.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho11.png"))); // NOI18N
         jButton2.setToolTipText("");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton2);
 
-        jButton3.setText("jButton3");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-clientes-24.png"))); // NOI18N
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton3);
 
-        jButton4.setText("jButton4");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-cliente-24.png"))); // NOI18N
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton4);
 
-        jButton6.setText("jButton6");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/aperto-de-mao.png"))); // NOI18N
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -125,7 +125,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         jMnuCadastros.add(jMnuEntregas);
 
         jMnuProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho11.png"))); // NOI18N
+        jMnuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho-de-compras1.png"))); // NOI18N
         jMnuProdutos.setText("Produtos");
         jMnuProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,15 +211,13 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(2059, 2059, 2059)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2020, Short.MAX_VALUE))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
 
         pack();

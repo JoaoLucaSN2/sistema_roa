@@ -180,7 +180,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
         }else if (jTxtNome.getText().isEmpty() == false){
             lista  = (List) vendedorDAO.listNome(jTxtNome.getText());
         }else if (jTxtCpf.getText().isEmpty() == false){
-            lista = (List) vendedorDAO.listNomeCpf(jTxtCpf.getText(), jTxtNome.getText());
+            lista = (List) vendedorDAO.listCpf(jTxtCpf.getText());
         }else {
             lista = (List) vendedorDAO.listAll();
         }
