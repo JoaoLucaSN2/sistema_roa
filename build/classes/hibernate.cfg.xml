@@ -37,17 +37,15 @@ However, if you add GPL Version 2 code and therefore, elected the GPL
 Version 2 license, then the option applies only if the new code is
 made subject to such option by the copyright holder.
 
-property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">joao_roa</property>
+
 
 -->
 <hibernate-configuration>
   <session-factory>
-    <
-    property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">joao_roa</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/db_joao_roa?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
     <mapping class="bean.JlrVendas"/>
     <mapping class="bean.JlrVendasprodutos"/>
     <mapping class="bean.JlrClientes"/>

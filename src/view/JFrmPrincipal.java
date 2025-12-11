@@ -321,7 +321,8 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void jBtnVendasMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVendasMovActionPerformed
         // TODO add your handling code here:
-        new JDlgVendas(this, rootPaneCheckingEnabled).setVisible(true);
+         JDlgConsultaVendas consultaVendas = new JDlgConsultaVendas(this, true);
+       consultaVendas.setVisible(true);
     }//GEN-LAST:event_jBtnVendasMovActionPerformed
 
     /**
