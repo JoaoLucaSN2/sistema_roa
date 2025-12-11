@@ -59,6 +59,7 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
         jTxtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsultar = new javax.swing.JButton();
+        jBtnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,7 +81,7 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnOk.setText("OK");
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
@@ -110,6 +111,13 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
             }
         });
 
+        jBtnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/aluguel.png"))); // NOI18N
+        jBtnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +128,10 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtnOk))
+                        .addComponent(jBtnImprimir)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -131,7 +142,8 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnConsultar)))))
+                                .addComponent(jBtnConsultar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,10 +161,12 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnConsultar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnOk)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnImprimir))
                 .addContainerGap())
         );
 
@@ -193,6 +207,21 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
     private void jTxtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtValorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtValorActionPerformed
+
+    private void jBtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnImprimirActionPerformed
+        // TODO add your handling code here:
+        try {
+    boolean completa = jTable1.print();
+    if (completa) {
+        Util.mensagem("PDF gerado com sucesso!");
+    } else {
+        Util.mensagem("A impressão foi cancelada.");
+    }
+} catch (java.awt.print.PrinterException e) {
+    Util.mensagem("Falha ao gerar PDF: " + e.getMessage());
+    System.err.println("Erro de Impressão: " + e.getMessage());
+}
+    }//GEN-LAST:event_jBtnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +270,7 @@ public class JDlgConsultaProdutos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
+    private javax.swing.JButton jBtnImprimir;
     private javax.swing.JButton jBtnOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

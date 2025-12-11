@@ -58,6 +58,7 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jBtnConsultar = new javax.swing.JButton();
         jCboNivel = new javax.swing.JComboBox<>();
+        jBtnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,7 +80,7 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnOk.setText("OK");
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
@@ -110,6 +111,13 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
             }
         });
 
+        jBtnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/aluguel.png"))); // NOI18N
+        jBtnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +128,10 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtnOk))
+                        .addComponent(jBtnImprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnOk)
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -131,7 +142,8 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(117, 117, 117)
-                                .addComponent(jBtnConsultar)))))
+                                .addComponent(jBtnConsultar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,10 +161,12 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnConsultar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnOk)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -193,6 +207,21 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
     private void jCboNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboNivelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCboNivelActionPerformed
+
+    private void jBtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnImprimirActionPerformed
+        // TODO add your handling code here:
+        try {
+            boolean completa = jTable1.print();
+            if (completa) {
+                Util.mensagem("PDF gerado com sucesso!");
+            } else {
+                Util.mensagem("A impressão foi cancelada.");
+            }
+        } catch (java.awt.print.PrinterException e) {
+            Util.mensagem("Falha ao gerar PDF: " + e.getMessage());
+            System.err.println("Erro de Impressão: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jBtnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +282,7 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
+    private javax.swing.JButton jBtnImprimir;
     private javax.swing.JButton jBtnOk;
     private javax.swing.JComboBox<String> jCboNivel;
     private javax.swing.JLabel jLabel1;
