@@ -4,7 +4,7 @@
  */
 package view;
 
-import bean.JlrVendedor;
+import bean.JlrVendas;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,21 +15,21 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ControllerConsultasVendas extends AbstractTableModel {
 
-    private List lstVendedor;
+    private List lstVendas;
 
-    public void setList(List lstVendedor) {
-        this.lstVendedor = lstVendedor;
+    public void setList(List lstVendas) {
+        this.lstVendas = lstVendas;
         this.fireTableDataChanged();
         
     }
     
-    public JlrVendedor getBean(int rowIndex) {
-        return (JlrVendedor) lstVendedor.get(rowIndex);
+    public JlrVendas getBean(int rowIndex) {
+        return (JlrVendas) lstVendas.get(rowIndex);
     }
 
     @Override
     public int getRowCount() {
-        return lstVendedor.size();
+        return lstVendas.size();
                 
     }
 
@@ -40,13 +40,13 @@ public class ControllerConsultasVendas extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        JlrVendedor jlrVendedor = (JlrVendedor) lstVendedor.get( rowIndex);
+        JlrVendas jlrVendas = (JlrVendas) lstVendas.get( rowIndex);
         if ( columnIndex == 0 ){
-            return jlrVendedor.getIdJlrVendedor();
+            return jlrVendas.getIdJlrVendas();
         } else if (columnIndex ==1) {
-            return jlrVendedor.getJlrNome();        
+            return jlrVendas.getJlrStatus();        
         } else if (columnIndex ==2) {
-            return jlrVendedor.getJlrTelefone();
+            return jlrVendas.getJlrTotal();
         } 
         return "";
     }
@@ -56,9 +56,9 @@ public class ControllerConsultasVendas extends AbstractTableModel {
         if ( columnIndex == 0) {
             return "Código";
         } else if ( columnIndex == 1) {
-            return "Nome";         
+            return "Status";         
         } else if ( columnIndex == 2) {
-            return "Telefone";
+            return "Totals";
         } 
         return "";
     }
